@@ -1,0 +1,14 @@
+{
+  "name": "tecuido-transport-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend seguro para consultar y solicitar viajes de TeCuido",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
