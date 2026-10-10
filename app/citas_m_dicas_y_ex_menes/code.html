@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>TeCuido</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,400..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed-variant": "#00429c", "on-primary": "#ffffff", "inverse-on-surface": "#eef0ff", "secondary": "#006d30", "surface-variant": "#dae2fd", "surface-bright": "#faf8ff", "inverse-surface": "#283044", "tertiary-container": "#8c2900", "on-primary-fixed": "#001945", "secondary-fixed-dim": "#79db8d", "surface-container-high": "#e2e7ff", "on-surface": "#131b2e", "on-tertiary-container": "#ffa689", "on-tertiary-fixed": "#390c00", "on-secondary-fixed": "#00210a", "primary-container": "#0d47a1", "on-background": "#131b2e", "surface-container-lowest": "#ffffff", "inverse-primary": "#b0c6ff", "tertiary-fixed": "ffdbd0", "error": "#ba1a1a", "on-secondary-fixed-variant": "#005323", "tertiary-fixed-dim": "#ffb59d", "on-tertiary-fixed-variant": "#832600", "on-secondary-container": "#007233", "primary-fixed-dim": "#b0c6ff", "secondary-container": "#92f5a4", "tertiary": "#651b00", "secondary-fixed": "#95f8a7", "primary-fixed": "#d9e2ff", "surface": "#faf8ff", "on-secondary": "#ffffff", "error-container": "#ffdad6", "surface-container": "#eaedff", "outline-variant": "#c3c6d4", "on-surface-variant": "#434652", "surface-container-low": "#f2f3ff", "surface-tint": "#2b5bb5", "outline": "#737783", "on-error-container": "#93000a", "surface-container-highest": "#dae2fd", "on-primary-container": "#a1bbff", "background": "#faf8ff", "primary": "#003178", "surface-dim": "#d2d9f4", "on-error": "#ffffff", "on-tertiary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.75rem", "gutter": "1rem", "margin": "1.25rem", "space-lg": "1.75rem", "space-xs": "0.5rem", "space-xl": "2.5rem", "space-md": "1.25rem" }, "fontFamily": { "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-xl": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"] }, "fontSize": { "headline-xl-mobile": ["30px", { "lineHeight": "40px", "fontWeight": "800" }], "headline-md": ["22px", { "lineHeight": "32px", "fontWeight": "700" }], "body-lg": ["18px", { "lineHeight": "30px", "fontWeight": "400" }], "label-lg": ["18px", { "lineHeight": "26px", "fontWeight": "700" }], "headline-xl": ["36px", { "lineHeight": "48px", "fontWeight": "800" }], "body-xl": ["20px", { "lineHeight": "32px", "fontWeight": "500" }], "body-md": ["18px", { "lineHeight": "28px", "fontWeight": "500" }], "headline-lg-mobile": ["24px", { "lineHeight": "34px", "fontWeight": "700" }], "label-md": ["16px", { "lineHeight": "24px", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "38px", "fontWeight": "700" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  <script src="../config.js"></script></head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-20 px-gutter flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-sm min-w-0"><img alt="Logo TeCuido Accesible" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1U-r1HFN5HDSWvx_lP2Wov0VGbV8XXCrdxLZs2SZPSlRoLYz_DF9fSQGSrDDBezOGnIdCuP2XR_ZCZdWDw77_Zh2zEdQ-arTvok7jehok2npSDhI-2NCg4fKDiC1X8IDU2vWz_mkysM5wmpFtA3vyjHVIllb7ilU90RTGMmEmznNzs0r_LswpphZV_eNzHZHRYb7mdIGCk-JYT6aGtZmTkUztW858t5oDlSXRzy_cW_atTo97j37vTgzXMH"/><div class="flex flex-col justify-center min-w-0"><span class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight truncate">TeCuido</span><span class="font-label-md text-label-md text-on-surface-variant truncate">Citas</span></div></div><div class="flex items-center gap-space-sm flex-shrink-0"><a aria-label="Pedir Ayuda o Llamar a Emergencia" class="min-h-[48px] px-space-sm py-space-xs rounded-xl bg-error text-on-error flex items-center gap-space-xs shadow-[0_2px_8px_rgba(186,26,26,0.25)] active:scale-95 transition-all" data-path="emergencia" href="#"><span class="material-symbols-outlined text-[24px]">call</span><span class="font-label-md text-label-md hidden sm:inline">Ayuda</span></a><a aria-label="Abrir inicio de sesión y perfil" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0" href="../login/code.html"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="flex flex-col relative w-full pt-20 pb-28 bg-surface max-w-xl mx-auto min-h-screen"><div class="flex flex-col w-full px-gutter pb-space-lg gap-space-md">
+<section class="flex flex-col gap-space-xs mt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[32px] text-primary" style="font-variation-settings: 'FILL' 1;">calendar_clock</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">Mis PrÃ³ximas Horas y ExÃ¡menes</h1>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+      Tus turnos mÃ©dicos ordenados por fecha, con recordatorios y las instrucciones que debes seguir.
+    </p>
+</section>
+<div aria-label="Filtro de horas y exÃ¡menes" class="bg-surface-container-high p-1.5 rounded-2xl flex items-stretch shadow-sm" role="tablist">
+<button aria-selected="true" class="flex-1 py-3 px-2 rounded-xl font-label-md text-label-md bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5 transition-all text-center" id="tab-proximas" role="tab">
+<span class="material-symbols-outlined text-[22px]">event_upcoming</span>
+<span>PrÃ³ximas Citas (2)</span>
+</button>
+<button aria-selected="false" class="flex-1 py-3 px-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all flex items-center justify-center gap-1.5 text-center" id="tab-historial" role="tab">
+<span class="material-symbols-outlined text-[22px]">history</span>
+<span>Historial Pasado</span>
+</button>
+</div>
+<div class="bg-secondary-container text-on-secondary-container px-space-md py-space-sm rounded-2xl flex items-center gap-space-sm shadow-sm">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Todo en orden para hoy</span>
+<span class="font-body-md text-body-md">Tienes 1 examen que requiere tu atenciÃ³n esta maÃ±ana.</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-md" id="contenedor-proximas">
+<!-- TARJETA 1 (HOY) -->
+<article class="bg-surface-container-lowest rounded-3xl p-space-md shadow-md flex flex-col gap-space-md relative overflow-hidden">
+<div class="bg-primary text-on-primary px-space-md py-2.5 rounded-2xl flex items-center justify-between gap-space-xs shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[26px] animate-pulse">crisis_alert</span>
+<span class="font-headline-md text-headline-md tracking-tight">HOY Â· 11:00 AM</span>
+</div>
+<span class="font-label-md text-label-md bg-surface-container-lowest text-primary px-3 py-1 rounded-full">
+          MiÃ©rcoles 24 Oct
+        </span>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[30px] text-primary flex-shrink-0 mt-0.5">chips</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary uppercase tracking-wide">Examen de Laboratorio</span>
+<h2 class="font-headline-md text-headline-md text-on-surface leading-snug">Perfil LipÃ­dico y Glicemia</h2>
+</div>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md mt-1 pl-1">
+<span class="material-symbols-outlined text-[22px] text-outline">location_on</span>
+<span>Hospital ClÃ­nico Central â€” <strong>Box 14 (Piso 2)</strong></span>
+</div>
+</div>
+<!-- INSTRUCCIONES DE PREPARACIÃ“N -->
+<div class="bg-tertiary-fixed text-on-tertiary-fixed p-space-md rounded-2xl flex flex-col gap-2 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[26px] text-tertiary">priority_high</span>
+<span class="font-label-lg text-label-lg text-tertiary tracking-tight">IMPORTANTE PARA EL EXAMEN:</span>
+</div>
+<ul class="font-body-md text-body-md space-y-1.5 pl-1">
+<li class="flex items-start gap-2">
+<span class="text-tertiary font-bold">â€¢</span>
+<span><strong>8 a 10 horas de ayuno absoluto:</strong> solo estÃ¡ permitido beber agua sola.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-tertiary font-bold">â€¢</span>
+<span>Llevar <strong>carnet de identidad fÃ­sico</strong> y la <strong>orden mÃ©dica impresa</strong>.</span>
+</li>
+</ul>
+</div>
+<!-- AVISO DE ALARMA -->
+<div class="bg-surface-container text-on-surface-variant p-space-sm rounded-xl flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">alarm_on</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Alarma programada: 09:30 AM</span>
+<span class="font-body-md text-body-md">Te avisarÃ¡ 1 hora y media antes para salir con calma y sin apuros.</span>
+</div>
+</div>
+<!-- BOTONES DE ACCIÃ“N DIRECTA -->
+<div class="flex flex-col gap-space-xs pt-1">
+<a class="min-h-[58px] bg-primary text-on-primary px-space-md py-3 rounded-2xl flex items-center justify-center gap-space-xs active:scale-[0.98] transition-transform shadow-sm" href="tel:+56912345678">
+<span class="material-symbols-outlined text-[26px]">call</span>
+<span class="font-label-lg text-label-lg">Llamar al Centro MÃ©dico</span>
+</a>
+<button class="min-h-[58px] bg-surface-container-high text-primary px-space-md py-3 rounded-2xl flex items-center justify-center gap-space-xs active:scale-[0.98] transition-transform" onclick="alert('Abriendo mapa hacia Hospital ClÃ­nico Central, Box 14.')" type="button">
+<span class="material-symbols-outlined text-[26px]">map</span>
+<span class="font-label-lg text-label-lg">Ver CÃ³mo Llegar en Mapa</span>
+</button>
+<button class="min-h-[58px] bg-secondary text-on-secondary px-space-md py-3 rounded-2xl flex items-center justify-center gap-space-xs active:scale-[0.98] transition-transform shadow-sm js-ride-button" data-destination="Hospital ClÃ­nico Central, Box 14" data-ride-purpose="Examen mÃ©dico" type="button">
+<span class="material-symbols-outlined text-[26px]">local_taxi</span>
+<span class="font-label-lg text-label-lg">Pedir viaje a mi examen</span>
+</button>
+</div>
+</article>
+<!-- TARJETA 2 (PRÃ“XIMA SEMANA) -->
+<article class="bg-surface-container-lowest rounded-3xl p-space-md shadow-md flex flex-col gap-space-md relative overflow-hidden">
+<div class="bg-surface-container-highest text-primary px-space-md py-2.5 rounded-2xl flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[24px]">event</span>
+<span class="font-headline-md text-headline-md tracking-tight">16:30 PM</span>
+</div>
+<span class="font-label-md text-label-md bg-surface-container-lowest text-on-surface-variant px-3 py-1 rounded-full">
+          Martes 30 Oct Â· En 6 dÃ­as
+        </span>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[30px] text-secondary flex-shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">cardiology</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wide">Consulta MÃ©dica</span>
+<h2 class="font-headline-md text-headline-md text-on-surface leading-snug">CardiÃ³logo: Dr. Fernando Ruiz</h2>
+</div>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md mt-1 pl-1">
+<span class="material-symbols-outlined text-[22px] text-outline">domain</span>
+<span>Centro MÃ©dico San JosÃ© â€” <strong>Consulta 402</strong></span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-2xl flex items-start gap-3">
+<span class="material-symbols-outlined text-[26px] text-primary flex-shrink-0 mt-0.5">assignment</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Recordatorio especial:</span>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Llevar los resultados del examen de sangre que te tomaste hoy.
+          </p>
+</div>
+</div>
+<div class="bg-surface-container text-on-surface-variant p-space-sm rounded-xl flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-secondary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">notifications_active</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Recordatorios automÃ¡ticos</span>
+<span class="font-body-md text-body-md">SonarÃ¡ el dÃ­a anterior a las 20:00 PM y el mismo dÃ­a 2 horas antes.</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs pt-1">
+<a class="min-h-[58px] bg-surface-container-high text-primary px-space-md py-3 rounded-2xl flex items-center justify-center gap-space-xs active:scale-[0.98] transition-transform" href="tel:+56987654321">
+<span class="material-symbols-outlined text-[26px]">call</span>
+<span class="font-label-lg text-label-lg">Llamar a Consulta 402</span>
+</a>
+<button class="min-h-[58px] bg-secondary text-on-secondary px-space-md py-3 rounded-2xl flex items-center justify-center gap-space-xs active:scale-[0.98] transition-transform shadow-sm js-ride-button" data-destination="Centro MÃ©dico San JosÃ©, Consulta 402" data-ride-purpose="Consulta con cardiÃ³logo" type="button">
+<span class="material-symbols-outlined text-[26px]">local_taxi</span>
+<span class="font-label-lg text-label-lg">Pedir viaje al cardiÃ³logo</span>
+</button>
+</div>
+</article>
+</div>
+<!-- VISTA HISTORIAL (OCULTA POR DEFECTO) -->
+<div class="hidden flex-col gap-space-md" id="contenedor-historial">
+<div class="bg-surface-container-lowest rounded-3xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md">12 de Septiembre, 2023</span>
+<span class="font-label-md text-label-md bg-surface-container px-2.5 py-0.5 rounded-full text-secondary">Completado</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Control OftalmolÃ³gico Anual</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Dra. Claudia Morales â€” ClÃ­nica Santa MarÃ­a</p>
+<div class="pt-2">
+<button class="min-h-[48px] px-space-sm bg-surface-container text-primary font-label-md text-label-md rounded-xl flex items-center gap-2" onclick="alert('Abriendo informe anterior...')" type="button">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span>Ver Receta y Resultados</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-3xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md">04 de Julio, 2023</span>
+<span class="font-label-md text-label-md bg-surface-container px-2.5 py-0.5 rounded-full text-secondary">Completado</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Electrocardiograma de Reposo</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Hospital ClÃ­nico Central â€” Servicio de CardiologÃ­a</p>
+<div class="pt-2">
+<button class="min-h-[48px] px-space-sm bg-surface-container text-primary font-label-md text-label-md rounded-xl flex items-center gap-2" onclick="alert('Abriendo informe anterior...')" type="button">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span>Ver Receta y Resultados</span>
+</button>
+</div>
+</div>
+</div>
+<div class="pt-space-xs sticky bottom-2 z-10">
+<button class="w-full min-h-[64px] bg-secondary text-on-secondary px-space-md py-4 rounded-2xl flex items-center justify-center gap-space-sm shadow-xl active:scale-[0.98] transition-all" onclick="document.getElementById('modal-nueva-cita').classList.remove('hidden')" type="button">
+<span class="material-symbols-outlined text-[32px]">add_circle</span>
+<span class="font-headline-md text-headline-md">Anotar Nueva Cita o Examen</span>
+</button>
+</div>
+<!-- MODAL / HOJA SIMPLE PARA ANOTAR NUEVA CITA -->
+<div class="hidden fixed inset-0 z-50 bg-inverse-surface/80 flex items-end sm:items-center justify-center p-0 sm:p-4" id="modal-nueva-cita">
+<div class="bg-surface-container-lowest w-full max-w-lg rounded-t-3xl sm:rounded-3xl p-space-md flex flex-col gap-space-md max-h-[795px] overflow-y-auto">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[28px] text-secondary">edit_calendar</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Anotar Nueva Hora</h2>
+</div>
+<button aria-label="Cerrar ventana" class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface" onclick="document.getElementById('modal-nueva-cita').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined text-[28px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-space-sm">
+<label class="flex flex-col gap-1">
+<span class="font-label-lg text-label-lg text-on-surface">Â¿QuÃ© tipo de atenciÃ³n es?</span>
+<input class="min-h-[58px] px-space-md rounded-xl bg-surface-container-low text-on-surface font-body-xl text-body-xl outline-none focus:bg-surface-container-high transition-colors" placeholder="Ej: Control MÃ©dico o Examen de Sangre" type="text"/>
+</label>
+<label class="flex flex-col gap-1">
+<span class="font-label-lg text-label-lg text-on-surface">Doctor o Nombre del Hospital</span>
+<input class="min-h-[58px] px-space-md rounded-xl bg-surface-container-low text-on-surface font-body-xl text-body-xl outline-none focus:bg-surface-container-high transition-colors" placeholder="Ej: Dra. Andrea Soto / CESFAM" type="text"/>
+</label>
+<div class="grid grid-cols-2 gap-space-xs">
+<label class="flex flex-col gap-1">
+<span class="font-label-lg text-label-lg text-on-surface">DÃ­a</span>
+<input class="min-h-[58px] px-space-sm rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md outline-none" type="date"/>
+</label>
+<label class="flex flex-col gap-1">
+<span class="font-label-lg text-label-lg text-on-surface">Hora</span>
+<input class="min-h-[58px] px-space-sm rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md outline-none" type="time"/>
+</label>
+</div>
+<label class="flex flex-col gap-1">
+<span class="font-label-lg text-label-lg text-on-surface">InstrucciÃ³n o quÃ© llevar (Opcional)</span>
+<textarea class="p-space-sm rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md outline-none resize-none" placeholder="Ej: Ir en ayunas de 8 horas, llevar lentes..." rows="2"></textarea>
+</label>
+</div>
+<div class="flex flex-col gap-space-xs pt-2">
+<button class="min-h-[64px] bg-secondary text-on-secondary rounded-2xl font-headline-md text-headline-md flex items-center justify-center gap-2" onclick="document.getElementById('modal-nueva-cita').classList.add('hidden'); alert('Â¡Cita guardada con Ã©xito! Te avisaremos a tiempo.');" type="button">
+<span class="material-symbols-outlined text-[28px]">check_circle</span>
+<span>Guardar Mi Cita</span>
+</button>
+<button class="min-h-[52px] bg-transparent text-on-surface-variant rounded-xl font-label-md text-label-md flex items-center justify-center" onclick="document.getElementById('modal-nueva-cita').classList.add('hidden')" type="button">
+          Cancelar y Volver
+        </button>
+</div>
+</div>
+</div>
+<!-- MODAL DE TRANSPORTE INTEGRADO -->
+<div class="hidden fixed inset-0 z-[60] bg-inverse-surface/80 flex items-end sm:items-center justify-center p-0 sm:p-4" id="modal-transporte">
+<div class="bg-surface-container-lowest w-full max-w-lg rounded-t-3xl sm:rounded-3xl p-space-md flex flex-col gap-space-md max-h-[90vh] overflow-y-auto">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[28px]">local_taxi</span></div>
+<div><h2 class="font-headline-md text-headline-md text-on-surface">Solicitar transporte</h2><p class="font-body-md text-body-md text-on-surface-variant">Sin salir de TeCuido</p></div>
+</div>
+<button aria-label="Cerrar transporte" class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface" id="btn-cerrar-transporte" type="button"><span class="material-symbols-outlined text-[28px]">close</span></button>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-space-sm">
+<p class="font-label-md text-label-md text-on-surface-variant">Motivo</p>
+<p class="font-body-xl text-body-xl font-bold text-on-surface" id="transporte-motivo">AtenciÃ³n mÃ©dica</p>
+<p class="font-label-md text-label-md text-on-surface-variant mt-2">Destino</p>
+<p class="font-body-lg text-body-lg text-on-surface" id="transporte-destino"></p>
+</div>
+<label class="flex flex-col gap-1"><span class="font-label-lg text-label-lg text-on-surface">Â¿DÃ³nde te recogemos?</span><input class="min-h-[58px] px-space-md rounded-xl bg-surface-container-low text-on-surface font-body-lg text-body-lg outline-none focus:bg-surface-container-high" id="transporte-origen" placeholder="Usar mi ubicaciÃ³n actual" type="text" value="Mi ubicaciÃ³n actual"/></label>
+<label class="flex flex-col gap-1"><span class="font-label-lg text-label-lg text-on-surface">Tipo de viaje</span><select class="min-h-[58px] px-space-md rounded-xl bg-surface-container-low text-on-surface font-body-lg text-body-lg outline-none" id="transporte-tipo"><option value="uberx">UberX</option><option value="comfort">Uber Comfort</option><option value="assist">Uber Assist</option></select></label>
+<div class="bg-primary-fixed p-space-sm rounded-xl flex items-start gap-space-xs"><span class="material-symbols-outlined text-primary text-[24px]">lock</span><p class="font-body-md text-on-surface-variant">La solicitud se enviarÃ¡ de forma segura al servicio de transporte. El precio y la disponibilidad se mostrarÃ¡n antes de confirmar.</p></div>
+<p class="hidden font-body-md text-error bg-error-container p-space-sm rounded-xl" id="transporte-error" role="alert"></p>
+<button class="min-h-[64px] bg-secondary text-on-secondary rounded-2xl font-headline-md text-headline-md flex items-center justify-center gap-2" id="btn-solicitar-transporte" type="button"><span class="material-symbols-outlined text-[28px]">search</span><span>Consultar disponibilidad y tarifa</span></button>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const tabProximas = document.getElementById('tab-proximas');
+    const tabHistorial = document.getElementById('tab-historial');
+    const contProximas = document.getElementById('contenedor-proximas');
+    const contHistorial = document.getElementById('contenedor-historial');
+
+    if (tabProximas && tabHistorial && contProximas && contHistorial) {
+      tabProximas.addEventListener('click', function() {
+        tabProximas.setAttribute('aria-selected', 'true');
+        tabHistorial.setAttribute('aria-selected', 'false');
+        
+        tabProximas.className = 'flex-1 py-3 px-2 rounded-xl font-label-md text-label-md bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5 transition-all text-center';
+        tabHistorial.className = 'flex-1 py-3 px-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all flex items-center justify-center gap-1.5 text-center';
+        
+        contProximas.classList.remove('hidden');
+        contHistorial.classList.add('hidden');
+      });
+
+      tabHistorial.addEventListener('click', function() {
+        tabHistorial.setAttribute('aria-selected', 'true');
+        tabProximas.setAttribute('aria-selected', 'false');
+
+        tabHistorial.className = 'flex-1 py-3 px-2 rounded-xl font-label-md text-label-md bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5 transition-all text-center';
+        tabProximas.className = 'flex-1 py-3 px-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all flex items-center justify-center gap-1.5 text-center';
+
+        contHistorial.classList.remove('hidden');
+        contProximas.classList.add('hidden');
+      });
+    }
+
+    const modalTransporte = document.getElementById('modal-transporte');
+    const destino = document.getElementById('transporte-destino');
+    const motivo = document.getElementById('transporte-motivo');
+    const errorTransporte = document.getElementById('transporte-error');
+    let viajeSeleccionado = null;
+
+    document.querySelectorAll('.js-ride-button').forEach(function (button) {
+      button.addEventListener('click', function () {
+        viajeSeleccionado = {
+          destination: button.dataset.destination,
+          purpose: button.dataset.ridePurpose
+        };
+        destino.textContent = viajeSeleccionado.destination;
+        motivo.textContent = viajeSeleccionado.purpose;
+        errorTransporte.classList.add('hidden');
+        modalTransporte.classList.remove('hidden');
+      });
+    });
+
+    document.getElementById('btn-cerrar-transporte')?.addEventListener('click', function () {
+      modalTransporte.classList.add('hidden');
+    });
+
+    document.getElementById('btn-solicitar-transporte')?.addEventListener('click', async function () {
+      const button = this;
+      const originalText = button.innerHTML;
+      button.disabled = true;
+      button.querySelector('span:last-child').textContent = 'Consultando disponibilidad...';
+      errorTransporte.classList.add('hidden');
+
+      try {
+        const response = await fetch((window.TECUIDO_API_URL || '') + '/api/transport/uber/estimate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            origin: document.getElementById('transporte-origen').value,
+            destination: viajeSeleccionado.destination,
+            rideType: document.getElementById('transporte-tipo').value
+          })
+        });
+        if (!response.ok) throw new Error('No fue posible consultar el servicio de transporte.');
+        const estimate = await response.json();
+        window.alert('Tarifa estimada: ' + estimate.currency + ' ' + estimate.price + '. La confirmaciÃ³n final se habilitarÃ¡ al conectar tu cuenta.');
+      } catch (error) {
+        if (error instanceof TypeError) {
+          errorTransporte.textContent = 'No se pudo contactar al servidor de transporte. Verifica que TeCuido estÃ© conectado.';
+        } else {
+          errorTransporte.textContent = 'Para consultar una tarifa se necesitan las coordenadas exactas de tu ubicaciÃ³n y del destino. No se realizÃ³ ningÃºn cobro ni solicitud.';
+        }
+        errorTransporte.classList.remove('hidden');
+      } finally {
+        button.disabled = false;
+        button.innerHTML = originalText;
+      }
+    });
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.06)]" data-active-classes="text-primary font-bold"><div class="h-20 max-w-xl mx-auto px-space-xs grid grid-cols-4 items-stretch"><a aria-label="Mi DÃ­a" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl text-on-surface-variant transition-colors hover:text-on-surface active:bg-surface-container" data-path="mi-dia" href="#"><span class="material-symbols-outlined text-[32px]">today</span><span class="font-label-md text-label-md tracking-tight">Mi DÃ­a</span></a><a aria-label="Remedios" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl text-on-surface-variant transition-colors hover:text-on-surface active:bg-surface-container" data-path="remedios" href="#"><span class="material-symbols-outlined text-[32px]">medication</span><span class="font-label-md text-label-md tracking-tight">Remedios</span></a><a aria-current="page" aria-label="Citas MÃ©dicas" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl transition-colors active:bg-surface-container text-primary font-bold" data-path="citas" href="#"><span class="material-symbols-outlined text-[32px]">calendar_month</span><span class="font-label-md text-label-md tracking-tight">Citas</span></a><a aria-label="Agregar Nuevo" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl text-on-surface-variant transition-colors hover:text-on-surface active:bg-surface-container" data-path="agregar-nuevo" href="#"><span class="material-symbols-outlined text-[32px] text-secondary">add_circle</span><span class="font-label-md text-label-md tracking-tight text-secondary">Nuevo</span></a></div></nav><script>
+  (function () {
+    const base = '../';
+    const paths = {
+      'mi-dia': 'mi_d_a_resumen_diario_y_alarmas',
+      remedios: 'mis_remedios_y_alarmas',
+      'escanear-receta': 'escanear_papel_o_receta_m_dica',
+      citas: 'citas_m_dicas_y_ex_menes',
+      'agregar-nuevo': 'agregar_remedio_o_cita_paso_a_paso',
+      emergencia: 'ficha_de_emergencia_m_dica_y_sos'
+    };
+    document.querySelectorAll('[data-path]').forEach(function (link) {
+      const target = paths[link.dataset.path];
+      if (target) link.href = base + target + '/code.html';
+    });
+  })();
+</script></body></html>
