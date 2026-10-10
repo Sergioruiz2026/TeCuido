@@ -1,6 +1,21 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { validateTrip, isValidEmail, validatePassword } = require('../src/server');
+const { handler, validateTrip, isValidEmail, validatePassword } = require('../src/server');
+
+function createResponse() {
+  return {
+    statusCode: null,
+    headers: null,
+    body: null,
+    writeHead(statusCode, headers) {
+      this.statusCode = statusCode;
+      this.headers = headers;
+    },
+    end(body) {
+      this.body = body;
+    }
+  };
+}
 
 test('rejects trips without coordinates', () => {
   assert.equal(
@@ -41,4 +56,16 @@ test('enforces a strong password policy', () => {
   assert.equal(validatePassword('ClaveSegura123'), null);
   assert.match(validatePassword('12345678'), /mayúscula/);
   assert.match(validatePassword('ClaveSegura'), /número/);
+});
+
+test('disables public emergency medical profile access', async () => {
+  const response = createResponse();
+
+  await handler(
+    { method: 'POST', url: '/api/medical/access', headers: {}, socket: {} },
+    response
+  );
+
+  assert.equal(response.statusCode, 503);
+  assert.match(JSON.parse(response.body).error, /autorización segura/);
 });

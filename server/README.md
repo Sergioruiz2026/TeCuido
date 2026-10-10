@@ -24,6 +24,7 @@ El backend no lee automáticamente archivos `.env`; configura las variables desd
 - `GET /health`
 - `POST /api/transport/uber/estimate`
 - `POST /api/transport/uber/request`
+- `POST /api/medical/access` está temporalmente deshabilitado (HTTP 503) hasta implementar autorización segura para emergencias.
 
 Las rutas de viaje requieren coordenadas, no direcciones libres:
 

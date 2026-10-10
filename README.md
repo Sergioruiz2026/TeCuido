@@ -72,7 +72,7 @@ El acceso HTTP sin cifrar está habilitado únicamente en el manifiesto del buil
 4. Si usas Uber, introduce `UBER_ACCESS_TOKEN` como secreto en el panel de Render; no lo guardes en GitHub.
 5. Tras el primer despliegue, comprueba `https://<servicio>.onrender.com/health` y copia el origen HTTPS asignado.
 
-El plan gratuito puede suspender el servicio por inactividad. El backend actual guarda usuarios, sesiones y fichas médicas solo en memoria: los datos se pierden al reiniciar o suspender el servicio. Además, `/api/medical/access` no autentica ni valida que quien consulta esté autorizado para ver la ficha. No uses datos médicos reales hasta conectar almacenamiento persistente y corregir ese control de acceso, además de completar la revisión de seguridad y privacidad.
+El plan gratuito puede suspender el servicio por inactividad. El backend actual guarda usuarios, sesiones y fichas médicas solo en memoria: los datos se pierden al reiniciar o suspender el servicio. La ruta pública `/api/medical/access` está deshabilitada (HTTP 503) hasta implementar autorización segura. No uses datos médicos reales hasta conectar almacenamiento persistente y completar la revisión de seguridad y privacidad.
 
 ### Compilar release con API HTTPS
 

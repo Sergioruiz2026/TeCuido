@@ -5,12 +5,7 @@ const PORT = Number(process.env.PORT || 3000);
 const UBER_API_BASE_URL = process.env.UBER_API_BASE_URL || 'https://api.uber.com';
 const users = new Map();
 const sessions = new Map();
-const medicalAccessLog = [];
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-function normalizeIdentity(value) {
-  return typeof value === 'string' ? value.trim().toLowerCase().replace(/\s+/g, ' ') : '';
-}
 
 function isValidEmail(value) {
   return typeof value === 'string' &&
@@ -268,40 +263,9 @@ async function handler(req, res) {
     return sendJson(res, 200, { medicalProfile: user.medicalProfile || {} });
   }
   if (req.method === 'POST' && route === '/api/medical/access') {
-    try {
-      const payload = await readJson(req);
-      const viewerName = normalizeIdentity(payload.viewerName);
-      const viewerRut = normalizeIdentity(payload.viewerRut);
-      if (!viewerName || !viewerRut) {
-        return sendJson(res, 422, { error: 'Ingresa tu nombre completo y RUT para continuar.' });
-      }
-      const patient = [...users.values()].find(user => user.medicalProfile?.fullName);
-      const auditEntry = {
-        id: crypto.randomUUID(),
-        viewerName: payload.viewerName.trim().slice(0, 120),
-        viewerRut: payload.viewerRut.trim().slice(0, 20),
-        accessedAt: new Date().toISOString(),
-        ip: req.socket.remoteAddress || 'unknown',
-        result: patient ? 'authorized' : 'not_found'
-      };
-      medicalAccessLog.push(auditEntry);
-      if (!patient) return sendJson(res, 404, { error: 'No hay una ficha médica de emergencia configurada.' });
-      return sendJson(res, 200, {
-        ok: true,
-        accessedAt: auditEntry.accessedAt,
-        medicalProfile: {
-          fullName: patient.medicalProfile.fullName,
-          diabetes: patient.medicalProfile.diabetes,
-          hypertension: patient.medicalProfile.hypertension,
-          allergies: patient.medicalProfile.allergies,
-          medications: patient.medicalProfile.medications,
-          bloodType: patient.medicalProfile.bloodType,
-          emergencyContact: patient.medicalProfile.emergencyContact
-        }
-      });
-    } catch (error) {
-      return sendJson(res, 400, { error: error.message });
-    }
+    return sendJson(res, 503, {
+      error: 'El acceso público a fichas médicas está temporalmente deshabilitado hasta implementar autorización segura.'
+    });
   }
   if (!['/api/transport/uber/estimate', '/api/transport/uber/request'].includes(route)) {
     return sendJson(res, 404, { error: 'Ruta no encontrada.' });
