@@ -64,6 +64,8 @@ El token de Uber debe permanecer en las variables de entorno del servidor; nunca
 
 El acceso HTTP sin cifrar está habilitado únicamente en el manifiesto del build `debug` para poder conectar con un servidor local. El build `release` requiere una API HTTPS.
 
+Después de iniciar sesión, la ficha médica guarda mediante `PUT` y, si el servidor confirma el guardado, vuelve a la pantalla inicial “Mi Día”. La API permite `PUT` en su preflight CORS para que Android WebView pueda enviar esa actualización.
+
 ### Desplegar gratis en Render
 
 1. Sube los cambios del repositorio a GitHub.

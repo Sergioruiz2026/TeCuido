@@ -1,6 +1,104 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ficha médica - TeCuido</title><style>body{margin:0;background:#faf8ff;color:#131b2e;font:18px Arial,sans-serif}main{max-width:620px;margin:auto;padding:24px}h1{color:#003178}section{background:#fff;padding:20px;border-radius:20px;box-shadow:0 4px 18px #131b2e18;margin:16px 0}label{display:block;margin:14px 0;font-weight:700}input,button{box-sizing:border-box;width:100%;min-height:52px;padding:12px;border-radius:12px;font:inherit}input{border:2px solid #dae2fd}button{border:0;background:#006d30;color:#fff;font-weight:bold}fieldset{border:0;padding:0;margin:0}legend{font-weight:bold;margin-bottom:12px}#message{color:#ba1a1a;min-height:28px}</style><script src="../config.js"></script></head>
-<body><main><h1>Mi ficha médica de emergencia</h1><p>Esta información puede ayudar a paramédicos si no puedes hablar. Completa solo lo que quieras compartir.</p><section><form id="profile"><label>Nombre completo<input id="fullName" maxlength="120" required placeholder="Ej.: Ana Pérez González"></label><label>RUT<input id="rut" maxlength="20" required placeholder="Ej.: 12.345.678-9"></label><fieldset><legend>Condiciones importantes</legend><label><input id="diabetes" type="checkbox"> Tengo diabetes</label><label><input id="hypertension" type="checkbox"> Tengo hipertensión</label></fieldset><label>Alergias a medicamentos<input id="allergies" maxlength="500" placeholder="Ej.: penicilina, ibuprofeno"></label><label>Medicamentos actuales<input id="medications" maxlength="500" placeholder="Ej.: Losartán 50 mg"></label><label>Grupo sanguíneo<input id="bloodType" maxlength="10" placeholder="Ej.: O+"></label><label>Contacto de emergencia<input id="emergencyContact" maxlength="100" placeholder="Nombre y teléfono"></label><button>Guardar ficha médica</button><div id="message" role="alert"></div></form></section></main>
-<script>
-const API_URL=window.TECUIDO_API_URL||'http://localhost:3000';const token=sessionStorage.getItem('tecuidoToken');if(!token)location.href='../login/code.html';document.getElementById('profile').addEventListener('submit',async e=>{e.preventDefault();const r=await fetch(API_URL+'/api/profile/medical',{method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({fullName:fullName.value,rut:rut.value,diabetes:diabetes.checked,hypertension:hypertension.checked,allergies:allergies.value,medications:medications.value,bloodType:bloodType.value,emergencyContact:emergencyContact.value})});const d=await r.json();message.textContent=r.ok?'Ficha guardada correctamente.':d.error;});
-</script></body></html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ficha médica - TeCuido</title>
+  <style>
+    body{margin:0;background:#faf8ff;color:#131b2e;font:18px Arial,sans-serif}
+    main{max-width:620px;margin:auto;padding:24px}
+    h1{color:#003178}
+    section{background:#fff;padding:20px;border-radius:20px;box-shadow:0 4px 18px #131b2e18;margin:16px 0}
+    label{display:block;margin:14px 0;font-weight:700}
+    input,button{box-sizing:border-box;width:100%;min-height:52px;padding:12px;border-radius:12px;font:inherit}
+    input{border:2px solid #dae2fd}
+    button{border:0;background:#006d30;color:#fff;font-weight:bold}
+    button:disabled{opacity:.65}
+    fieldset{border:0;padding:0;margin:0}
+    legend{font-weight:bold;margin-bottom:12px}
+    #message{color:#ba1a1a;min-height:28px}
+    .home-link{display:block;margin:16px 0;color:#003178;font-weight:bold}
+  </style>
+<script src="../config.js"></script></head>
+<body>
+  <main>
+    <a class="home-link" href="../mi_d_a_resumen_diario_y_alarmas/code.html">Volver al inicio</a>
+    <h1>Mi ficha médica de emergencia</h1>
+    <p>Esta información puede ayudar a paramédicos si no puedes hablar. Completa solo lo que quieras compartir.</p>
+    <section>
+      <form id="profile">
+        <label>Nombre completo<input id="fullName" maxlength="120" required placeholder="Ej.: Ana Pérez González"></label>
+        <label>RUT<input id="rut" maxlength="20" required placeholder="Ej.: 12.345.678-9"></label>
+        <fieldset>
+          <legend>Condiciones importantes</legend>
+          <label><input id="diabetes" type="checkbox"> Tengo diabetes</label>
+          <label><input id="hypertension" type="checkbox"> Tengo hipertensión</label>
+        </fieldset>
+        <label>Alergias a medicamentos<input id="allergies" maxlength="500" placeholder="Ej.: penicilina, ibuprofeno"></label>
+        <label>Medicamentos actuales<input id="medications" maxlength="500" placeholder="Ej.: Losartán 50 mg"></label>
+        <label>Grupo sanguíneo<input id="bloodType" maxlength="10" placeholder="Ej.: O+"></label>
+        <label>Contacto de emergencia<input id="emergencyContact" maxlength="100" placeholder="Nombre y teléfono"></label>
+        <button id="save-profile" type="submit">Guardar ficha médica</button>
+        <div id="message" role="alert" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+  <script>
+    const API_URL = window.TECUIDO_API_URL || 'http://localhost:3000';
+    const token = sessionStorage.getItem('tecuidoToken');
+    const form = document.getElementById('profile');
+    const saveButton = document.getElementById('save-profile');
+    const message = document.getElementById('message');
+
+    if (!token) {
+      message.textContent = 'No hay una sesión activa. Vuelve al inicio de la aplicación.';
+      saveButton.disabled = true;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!token) return;
+
+      saveButton.disabled = true;
+      message.style.color = '#131b2e';
+      message.textContent = 'Guardando ficha médica...';
+
+      try {
+        const response = await fetch(API_URL + '/api/profile/medical', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token
+          },
+          body: JSON.stringify({
+            fullName: document.getElementById('fullName').value,
+            rut: document.getElementById('rut').value,
+            diabetes: document.getElementById('diabetes').checked,
+            hypertension: document.getElementById('hypertension').checked,
+            allergies: document.getElementById('allergies').value,
+            medications: document.getElementById('medications').value,
+            bloodType: document.getElementById('bloodType').value,
+            emergencyContact: document.getElementById('emergencyContact').value
+          })
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error || 'No se pudo guardar la ficha médica.');
+        }
+
+        message.style.color = '#006d30';
+        message.textContent = 'Ficha guardada. Volviendo al inicio...';
+        window.setTimeout(() => {
+          window.location.replace('../mi_d_a_resumen_diario_y_alarmas/code.html');
+        }, 600);
+      } catch (error) {
+        message.style.color = '#ba1a1a';
+        message.textContent = error instanceof Error
+          ? error.message
+          : 'No se pudo conectar con el servidor. Revisa tu conexión e inténtalo nuevamente.';
+        saveButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
