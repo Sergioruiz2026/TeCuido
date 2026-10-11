@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
@@ -16,22 +16,22 @@
 <body>
 <main>
   <h1>TeCuido</h1>
-  <p>Ingresa con tu clave o usa la huella/rostro de tu telÃ©fono. TeCuido nunca recibe ni guarda tus datos biomÃ©tricos.</p>
+  <p>Ingresa con tu clave o usa la huella/rostro de tu teléfono. TeCuido nunca recibe ni guarda tus datos biométricos.</p>
   <div class="tab" role="tablist">
     <button class="active" id="tab-login" role="tab" type="button">Ingresar</button>
-    <button id="tab-medical" role="tab" type="button">Ver antecedentes clÃ­nicos</button>
+    <button id="tab-medical" role="tab" type="button">Ver antecedentes clínicos</button>
   </div>
   <section class="panel active" id="login-panel">
   <form id="login-form">
-    <label for="email">Correo electrÃ³nico</label>
+    <label for="email">Correo electrónico</label>
     <input id="email" type="email" autocomplete="username" placeholder="Ejemplo: ana.perez@gmail.com" required>
     <small>Usa un correo real al que tengas acceso.</small>
-    <label for="password">ContraseÃ±a</label>
+    <label for="password">Contraseña</label>
     <div class="password-field">
       <input id="password" type="password" autocomplete="current-password" minlength="8" placeholder="Ejemplo: TeCuido2026" required>
-      <button class="password-toggle" id="toggle-password" type="button" aria-label="Mostrar contraseÃ±a" aria-pressed="false">ðŸ‘</button>
+      <button class="password-toggle" id="toggle-password" type="button" aria-label="Mostrar contraseña" aria-pressed="false">👁</button>
     </div>
-    <small class="help">Escribe tu contraseÃ±a. Ejemplo: TeCuido2026. Debe tener al menos 8 caracteres.</small>
+    <small class="help">Escribe tu contraseña. Ejemplo: TeCuido2026. Debe tener al menos 8 caracteres.</small>
     <button type="submit">Ingresar</button>
   </form>
   <button class="secondary" id="biometric" type="button">Ingresar con huella o rostro</button>
@@ -40,18 +40,18 @@
   </section>
   <section class="panel" id="medical-panel">
     <div class="notice">
-      <strong>CÃ³mo ingresar los datos</strong>
+      <strong>Cómo ingresar los datos</strong>
       <p>Si la persona no puede hablar, no necesitas pedirle sus datos. Ingresa tus propios datos como persona que consulta:</p>
       <ol>
         <li>Escribe tu nombre y apellido.</li>
         <li>Escribe tu RUT con guion, por ejemplo: 12.345.678-5.</li>
-        <li>Presiona â€œVer antecedentes importantesâ€.</li>
+        <li>Presiona “Ver antecedentes importantes”.</li>
       </ol>
-      <p>La consulta quedarÃ¡ registrada y se mostrarÃ¡n solo antecedentes importantes.</p>
+      <p>La consulta quedará registrada y se mostrarán solo antecedentes importantes.</p>
     </div>
     <form id="medical-access-form">
       <label for="viewer-name">Tu nombre completo</label>
-      <input id="viewer-name" autocomplete="name" placeholder="Ejemplo: Ana PÃ©rez GonzÃ¡lez" required>
+      <input id="viewer-name" autocomplete="name" placeholder="Ejemplo: Ana Pérez González" required>
       <small class="help">Escribe tu nombre completo, no el de la persona atendida.</small>
       <label for="viewer-rut">Tu RUT</label>
       <input id="viewer-rut" autocomplete="off" placeholder="Ejemplo: 12.345.678-5" required>
@@ -84,8 +84,8 @@
     const button = event.currentTarget;
     const showing = passwordInput.type === 'text';
     passwordInput.type = showing ? 'password' : 'text';
-    button.textContent = showing ? 'ðŸ‘' : 'ðŸ™ˆ';
-    button.setAttribute('aria-label', showing ? 'Mostrar contraseÃ±a' : 'Ocultar contraseÃ±a');
+    button.textContent = showing ? '👁' : '🙈';
+    button.setAttribute('aria-label', showing ? 'Mostrar contraseña' : 'Ocultar contraseña');
     button.setAttribute('aria-pressed', String(!showing));
   });
   document.getElementById('login-form').addEventListener('submit', async (event) => {
@@ -100,8 +100,8 @@
   });
   document.getElementById('register').addEventListener('click', () => { location.href = '../registro/code.html'; });
   document.getElementById('biometric').addEventListener('click', async () => {
-    if (!window.PublicKeyCredential) { show('Este telÃ©fono no permite autenticaciÃ³n biomÃ©trica web. Usa tu clave.'); return; }
-    show('La biometrÃ­a requiere configurar una credencial del dispositivo en Android. Usa tu clave para el primer ingreso.');
+    if (!window.PublicKeyCredential) { show('Este teléfono no permite autenticación biométrica web. Usa tu clave.'); return; }
+    show('La biometría requiere configurar una credencial del dispositivo en Android. Usa tu clave para el primer ingreso.');
   });
   document.getElementById('medical-access-form').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -129,11 +129,11 @@
       patient.textContent = 'Persona atendida: ' + (profile.fullName || 'No informado');
       medicalResult.appendChild(patient);
       [
-        ['Diabetes', profile.diabetes ? 'SÃ­' : 'No declarada'],
-        ['HipertensiÃ³n', profile.hypertension ? 'SÃ­' : 'No declarada'],
+        ['Diabetes', profile.diabetes ? 'Sí' : 'No declarada'],
+        ['Hipertensión', profile.hypertension ? 'Sí' : 'No declarada'],
         ['Alergias', profile.allergies || 'No informadas'],
         ['Medicamentos', profile.medications || 'No informados'],
-        ['Grupo sanguÃ­neo', profile.bloodType || 'No informado']
+        ['Grupo sanguíneo', profile.bloodType || 'No informado']
       ].forEach(([label, value]) => {
         const paragraph = document.createElement('p');
         paragraph.textContent = label + ': ' + value;
@@ -144,4 +144,3 @@
 </script>
 </body>
 </html>
-
