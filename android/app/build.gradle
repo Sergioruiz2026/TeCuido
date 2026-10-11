@@ -3,23 +3,37 @@ apply plugin: 'com.android.application'
 android {
     namespace "cl.tecuido.app"
     compileSdk rootProject.ext.compileSdkVersion
+
+    // Configuración de firma para Release
+    signingConfigs {
+        release {
+            // Cambia la ruta a donde guardaste tu clave (usa / en lugar de \)
+            storeFile file("C:/Users/matia/tecuido-release.keystore")
+            storePassword "TU_CONTRASEÑA_KEYSTORE"   // Cambia por la contraseña de la keystore
+            keyAlias "tecuido"
+            keyPassword "TU_CONTRASEÑA_KEY"          // Cambia por la contraseña del alias
+        }
+    }
+
     defaultConfig {
         applicationId "cl.tecuido.app"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 24 // Fijado en Android 5.1+ para máxima compatibilidad
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
-             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
-             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+            // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release // Aplica la firma al APK
         }
     }
 }
