@@ -6,7 +6,7 @@
   "scripts": {
     "android:sync": "npx cap sync android",
     "android:open": "npx cap open android",
-    "android:debug": "npx cap sync android && cd android && gradlew.bat assembleDebug",
+    "android:debug": "node scripts/configure-api.js && npx cap sync android && cd android && gradlew.bat assembleDebug",
     "android:release:prepare": "node scripts/configure-api.js --release && npx cap sync android && npx cap open android",
     "server:start": "npm --prefix server start",
     "server:test": "npm --prefix server test"
