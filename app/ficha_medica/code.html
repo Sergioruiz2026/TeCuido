@@ -19,7 +19,7 @@
     #message{color:#ba1a1a;min-height:28px}
     .home-link{display:block;margin:16px 0;color:#003178;font-weight:bold}
   </style>
-<script src="../config.js"></script></head>
+<script src="../config.js"></script><script src="../shared.js"></script></head>
 <body>
   <main>
     <a class="home-link" href="../mi_d_a_resumen_diario_y_alarmas/code.html">Volver al inicio</a>
@@ -44,33 +44,42 @@
     </section>
   </main>
   <script>
-    const API_URL = window.TECUIDO_API_URL || 'http://localhost:3000';
-    const token = sessionStorage.getItem('tecuidoToken');
+    const hasSession = window.Tecuido.hasSession();
     const form = document.getElementById('profile');
     const saveButton = document.getElementById('save-profile');
     const message = document.getElementById('message');
 
-    if (!token) {
+    if (!hasSession) {
       message.textContent = 'No hay una sesión activa. Vuelve al inicio de la aplicación.';
       saveButton.disabled = true;
+    } else {
+      window.Tecuido.request('/api/profile/medical')
+        .then(({ medicalProfile }) => {
+          const profile = medicalProfile || {};
+          for (const field of ['fullName', 'rut', 'allergies', 'medications', 'bloodType', 'emergencyContact']) {
+            document.getElementById(field).value = profile[field] || '';
+          }
+          document.getElementById('diabetes').checked = profile.diabetes === true;
+          document.getElementById('hypertension').checked = profile.hypertension === true;
+        })
+        .catch((error) => {
+          message.style.color = '#ba1a1a';
+          message.textContent = 'No pudimos cargar la ficha guardada: ' + error.message;
+        });
     }
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      if (!token) return;
+      if (!window.Tecuido.hasSession()) return;
 
       saveButton.disabled = true;
       message.style.color = '#131b2e';
       message.textContent = 'Guardando ficha médica...';
 
       try {
-        const response = await fetch(API_URL + '/api/profile/medical', {
+        await window.Tecuido.request('/api/profile/medical', {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + token
-          },
-          body: JSON.stringify({
+          body: {
             fullName: document.getElementById('fullName').value,
             rut: document.getElementById('rut').value,
             diabetes: document.getElementById('diabetes').checked,
@@ -79,12 +88,8 @@
             medications: document.getElementById('medications').value,
             bloodType: document.getElementById('bloodType').value,
             emergencyContact: document.getElementById('emergencyContact').value
-          })
+          }
         });
-        const data = await response.json();
-        if (!response.ok) {
-          throw new Error(data.error || 'No se pudo guardar la ficha médica.');
-        }
 
         message.style.color = '#006d30';
         message.textContent = 'Ficha guardada. Volviendo al inicio...';

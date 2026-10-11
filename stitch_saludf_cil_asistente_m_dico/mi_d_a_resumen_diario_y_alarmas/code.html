@@ -1,294 +1,37 @@
-<!DOCTYPE html>
-
-<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>TeCuido</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,400..700,0..1,-50..200" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed-variant": "#00429c", "on-primary": "#ffffff", "inverse-on-surface": "#eef0ff", "secondary": "#006d30", "surface-variant": "#dae2fd", "surface-bright": "#faf8ff", "inverse-surface": "#283044", "tertiary-container": "#8c2900", "on-primary-fixed": "#001945", "secondary-fixed-dim": "#79db8d", "surface-container-high": "#e2e7ff", "on-surface": "#131b2e", "on-tertiary-container": "#ffa689", "on-tertiary-fixed": "#390c00", "on-secondary-fixed": "#00210a", "primary-container": "#0d47a1", "on-background": "#131b2e", "surface-container-lowest": "#ffffff", "inverse-primary": "#b0c6ff", "tertiary-fixed": "ffdbd0", "error": "#ba1a1a", "on-secondary-fixed-variant": "#005323", "tertiary-fixed-dim": "#ffb59d", "on-tertiary-fixed-variant": "#832600", "on-secondary-container": "#007233", "primary-fixed-dim": "#b0c6ff", "secondary-container": "#92f5a4", "tertiary": "#651b00", "secondary-fixed": "#95f8a7", "primary-fixed": "#d9e2ff", "surface": "#faf8ff", "on-secondary": "#ffffff", "error-container": "#ffdad6", "surface-container": "#eaedff", "outline-variant": "#c3c6d4", "on-surface-variant": "#434652", "surface-container-low": "#f2f3ff", "surface-tint": "#2b5bb5", "outline": "#737783", "on-error-container": "#93000a", "surface-container-highest": "#dae2fd", "on-primary-container": "#a1bbff", "background": "#faf8ff", "primary": "#003178", "surface-dim": "#d2d9f4", "on-error": "#ffffff", "on-tertiary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.75rem", "gutter": "1rem", "margin": "1.25rem", "space-lg": "1.75rem", "space-xs": "0.5rem", "space-xl": "2.5rem", "space-md": "1.25rem" }, "fontFamily": { "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-xl": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"] }, "fontSize": { "headline-xl-mobile": ["30px", { "lineHeight": "40px", "fontWeight": "800" }], "headline-md": ["22px", { "lineHeight": "32px", "fontWeight": "700" }], "body-lg": ["18px", { "lineHeight": "30px", "fontWeight": "400" }], "label-lg": ["18px", { "lineHeight": "26px", "fontWeight": "700" }], "headline-xl": ["36px", { "lineHeight": "48px", "fontWeight": "800" }], "body-xl": ["20px", { "lineHeight": "32px", "fontWeight": "500" }], "body-md": ["18px", { "lineHeight": "28px", "fontWeight": "500" }], "headline-lg-mobile": ["24px", { "lineHeight": "34px", "fontWeight": "700" }], "label-md": ["16px", { "lineHeight": "24px", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "38px", "fontWeight": "700" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mi día - TeCuido</title>
+  <script src="../config.js"></script><script src="../shared.js"></script>
+  <style>
+    :root{font:16px system-ui,sans-serif;color:#17233b;background:#f5f7fc}*{box-sizing:border-box}body{margin:0;padding:0 0 86px}header{background:#fff;padding:16px max(20px,calc((100vw - 680px)/2));box-shadow:0 2px 12px #17233b12;position:sticky;top:0;z-index:1}header strong{font-size:21px;color:#003178}main{max-width:680px;margin:auto;padding:20px}h1{font-size:28px;margin:18px 0 4px}h2{font-size:21px;margin:20px 0 10px}.muted{color:#59667c}.panel,.card{background:#fff;border:1px solid #e2e7f1;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 4px 16px #17233b08}.card p{margin:6px 0;color:#46536b}.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.chip{border-radius:20px;padding:5px 10px;background:#e8eef9;color:#17356a}.notice{color:#755000;background:#fff4d2;border-radius:12px;padding:12px;margin:14px 0}button,a.button{border:0;border-radius:12px;background:#003178;color:white;padding:12px 16px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;min-height:46px}button.secondary,a.secondary{background:#e5ebf7;color:#17356a}button:disabled{opacity:.55}.empty{text-align:center;color:#536078;padding:18px}.error{color:#9e1710}.dose{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #edf0f5;padding:12px 0}.dose button{white-space:nowrap}nav{position:fixed;bottom:0;width:100%;display:flex;justify-content:center;gap:8px;background:#fff;padding:10px 10px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -2px 12px #17233b12}nav a{flex:1;max-width:150px;text-align:center;text-decoration:none;color:#324667;padding:9px 4px;border-radius:10px}nav a[aria-current=page]{background:#e8eef9;color:#003178;font-weight:700}@media(max-width:460px){.dose{align-items:flex-start;flex-direction:column}.dose button{width:100%}}
   </style>
-  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-20 px-gutter flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-sm min-w-0"><img alt="Logo TeCuido Accesible" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1U-r1HFN5HDSWvx_lP2Wov0VGbV8XXCrdxLZs2SZPSlRoLYz_DF9fSQGSrDDBezOGnIdCuP2XR_ZCZdWDw77_Zh2zEdQ-arTvok7jehok2npSDhI-2NCg4fKDiC1X8IDU2vWz_mkysM5wmpFtA3vyjHVIllb7ilU90RTGMmEmznNzs0r_LswpphZV_eNzHZHRYb7mdIGCk-JYT6aGtZmTkUztW858t5oDlSXRzy_cW_atTo97j37vTgzXMH"/><div class="flex flex-col justify-center min-w-0"><span class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight truncate">TeCuido</span><span class="font-label-md text-label-md text-on-surface-variant truncate">Mi Día</span></div></div><div class="flex items-center gap-space-sm flex-shrink-0"><a aria-label="Pedir Ayuda o Llamar a Emergencia" class="min-h-[48px] px-space-sm py-space-xs rounded-xl bg-error text-on-error flex items-center gap-space-xs shadow-[0_2px_8px_rgba(186,26,26,0.25)] active:scale-95 transition-all" data-path="emergencia" href="#"><span class="material-symbols-outlined text-[24px]">call</span><span class="font-label-md text-label-md hidden sm:inline">Ayuda</span></a><a aria-label="Abrir inicio de sesi�n y perfil" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0" href="../login/code.html"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="flex flex-col relative w-full pt-20 pb-28 bg-surface max-w-xl mx-auto min-h-screen"><div class="flex flex-col w-full px-margin pb-space-lg gap-space-lg">
-<!-- Saludo Cálido y Fecha -->
-<section class="flex flex-col gap-space-xs mt-space-sm">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-[32px] text-tertiary-container" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
-<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Buenos días</span>
-</div>
-<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md">
-<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
-        Al día
-      </span>
-</div>
-<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface tracking-tight">
-      ¡Buenos días, Don Carlos!
-    </h1>
-<div class="flex items-baseline gap-2 bg-surface-container-high px-space-md py-space-xs rounded-xl">
-<span class="material-symbols-outlined text-[24px] text-primary self-center">calendar_today</span>
-<p class="font-headline-md text-headline-md text-primary">
-        Hoy es Miércoles, 24 de Octubre
-      </p>
-</div>
-<!-- Resumen Reasegurador -->
-<div class="bg-surface-container-low p-space-md rounded-xl shadow-sm flex items-start gap-space-sm mt-space-xs">
-<span class="material-symbols-outlined text-[32px] text-primary flex-shrink-0" style="font-variation-settings: 'FILL' 1;">task_alt</span>
-<p class="font-body-xl text-body-xl text-on-surface leading-snug">
-        Tienes <strong class="text-primary font-bold">2 remedios pendientes</strong> y <strong class="text-secondary font-bold">1 examen médico</strong> programado para hoy.
-      </p>
-</div>
-</section>
-<!-- SECCIÓN 1: Próximo Medicamento -->
-<section class="flex flex-col gap-space-xs">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-[28px] text-error" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Próximo Medicamento</h2>
-</div>
-<span class="px-space-xs py-1 rounded-full bg-error-container text-on-error-container font-label-md text-label-md font-bold">
-        Prioridad
-      </span>
-</div>
-<!-- Tarjeta Principal del Medicamento -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-md transition-all duration-300" id="card-losartan">
-<!-- Hora y Contexto -->
-<div class="flex items-center justify-between bg-surface-container px-space-md py-space-xs rounded-lg">
-<div class="flex items-center gap-space-xs text-primary">
-<span class="material-symbols-outlined text-[28px]">schedule</span>
-<span class="font-headline-md text-headline-md">08:30 AM</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface-variant font-bold bg-surface-bright px-space-xs py-1 rounded-full">
-          En 20 minutos
-        </span>
-</div>
-<!-- Detalle Visual y Nombre -->
-<div class="flex items-center gap-space-md">
-<div class="w-20 h-20 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0 shadow-inner">
-<span class="material-symbols-outlined text-primary text-[48px]" style="font-variation-settings: 'FILL' 1;">pill</span>
-</div>
-<div class="flex flex-col">
-<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-extrabold leading-tight">
-            Losartán 50 mg
-          </span>
-<span class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[20px] text-tertiary">restaurant</span>
-            Tomar con el desayuno
-          </span>
-</div>
-</div>
-<!-- Indicación Clara con Icono -->
-<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-[28px] text-primary flex-shrink-0">water_drop</span>
-<p class="font-body-lg text-body-lg text-on-surface font-medium leading-relaxed">
-          1 pastilla redonda blanca con un vaso completo de agua.
-        </p>
-</div>
-<!-- Botones de Acción -->
-<div class="flex flex-col gap-space-sm pt-space-xs">
-<!-- Botón Gigante de Confirmación (WCAG AAA) -->
-<button aria-label="Confirmar que tomaste el medicamento Losartán" class="w-full min-h-[64px] py-space-sm px-space-md rounded-xl bg-secondary text-on-secondary font-headline-md text-headline-md flex items-center justify-center gap-space-xs shadow-md active:scale-[0.98] transition-transform" id="btn-tomar-losartan" onclick="marcarTomado()">
-<span class="material-symbols-outlined text-[36px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span>¡YA ME LO TOMÉ!</span>
-</button>
-<!-- Botón Secundario Claro -->
-<button aria-label="Posponer alarma del medicamento 15 minutos" class="w-full min-h-[56px] py-space-xs px-space-md rounded-xl bg-surface-container text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-space-xs active:bg-surface-container-high transition-colors" id="btn-posponer" onclick="posponerAlarma()">
-<span class="material-symbols-outlined text-[28px] text-on-surface-variant">snooze</span>
-<span>Posponer 15 minutos</span>
-</button>
-</div>
-<!-- Feedback de Éxito Oculto -->
-<div class="hidden bg-secondary-container text-on-secondary-container p-space-md rounded-xl flex items-center gap-space-sm" id="feedback-tomado">
-<span class="material-symbols-outlined text-[36px] text-secondary" style="font-variation-settings: 'FILL' 1;">sentiment_very_satisfied</span>
-<div class="flex flex-col">
-<span class="font-headline-md text-headline-md font-bold">¡Muy bien, Don Carlos!</span>
-<span class="font-body-md text-body-md">Registrado a las 08:12 AM. Descanse y disfrute su mañana.</span>
-</div>
-</div>
-</div>
-</section>
-<!-- SECCIÓN 2: Tu Cita de Hoy -->
-<section class="flex flex-col gap-space-xs">
-<div class="flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-[28px] text-primary" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Tu Cita de Hoy</h2>
-</div>
-<!-- Tarjeta de la Cita -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
-<!-- Horario y Distintivo de Centro Médico -->
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-space-xs text-primary">
-<span class="material-symbols-outlined text-[30px]" style="font-variation-settings: 'FILL' 1;">schedule</span>
-<div class="flex flex-col">
-<span class="font-headline-md text-headline-md leading-tight">11:00 AM</span>
-<span class="font-label-md text-label-md text-on-surface-variant font-medium">Esta mañana</span>
-</div>
-</div>
-<span class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold">
-<span class="material-symbols-outlined text-[20px]">medical_services</span>
-          Laboratorio
-        </span>
-</div>
-<!-- Nombre del Examen y Lugar -->
-<div class="flex flex-col gap-1">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-extrabold leading-snug">
-          Examen de Sangre y Perfil Lipídico
-        </h3>
-<p class="font-body-lg text-body-lg text-on-surface-variant flex items-start gap-1.5 mt-1">
-<span class="material-symbols-outlined text-[24px] text-primary flex-shrink-0 mt-0.5">location_on</span>
-<span><strong>Hospital Clínico Central</strong><br/>Piso 2, Sala 14 (Pabellón A)</span>
-</p>
-</div>
-<!-- Alerta Destacada de Preparación (Ámbar WCAG) -->
-<div class="bg-tertiary-fixed text-on-tertiary-fixed p-space-md rounded-xl flex items-start gap-space-sm shadow-sm">
-<span class="material-symbols-outlined text-[32px] text-tertiary flex-shrink-0" style="font-variation-settings: 'FILL' 1;">warning</span>
-<div class="flex flex-col gap-0.5">
-<span class="font-headline-md text-headline-md text-tertiary font-bold">Recordatorio Importante</span>
-<p class="font-body-lg text-body-lg text-on-tertiary-fixed font-medium leading-relaxed">
-            Ir en <strong>ayunas estrictas</strong> (no comer ni beber nada con azúcar desde anoche). Sólo se permite medio vaso de agua pura.
-          </p>
-</div>
-</div>
-<!-- Acciones de Cita -->
-<div class="grid grid-cols-1 gap-space-sm pt-space-xs">
-<button aria-label="Ver cómo llegar al hospital" class="w-full min-h-[58px] py-space-xs px-space-md rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow-sm active:scale-[0.99] transition-transform">
-<span class="material-symbols-outlined text-[28px]">directions</span>
-<span>📍 Ver Dirección y Cómo Llegar</span>
-</button>
-<div class="flex items-center justify-between px-space-md py-space-xs rounded-xl bg-surface-container-low">
-<div class="flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-[26px] text-secondary" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
-<span class="font-body-md text-body-md text-on-surface font-semibold">Alarma activa</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface-variant">Avisa a las 10:00 AM (1 hr antes)</span>
-</div>
-</div>
-</div>
-</section>
-<!-- SECCIÓN 3: Para Más Tarde Hoy -->
-<section class="flex flex-col gap-space-xs">
-<div class="flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-[28px] text-on-surface-variant">more_time</span>
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Para más tarde hoy</h2>
-</div>
-<div class="flex flex-col gap-space-sm">
-<!-- Remedio Tarde -->
-<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between gap-space-sm">
-<div class="flex items-center gap-space-md min-w-0">
-<div class="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center flex-shrink-0 text-primary">
-<span class="material-symbols-outlined text-[32px]">medication</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-label-md text-label-md text-primary font-bold">14:00 PM • Almuerzo</span>
-<span class="font-headline-md text-headline-md text-on-surface truncate">Metformina 850 mg</span>
-<span class="font-body-md text-body-md text-on-surface-variant">1 tableta grande blanca</span>
-</div>
-</div>
-<span class="px-space-xs py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md flex-shrink-0">
-          Pendiente
-        </span>
-</div>
-<!-- Remedio Noche -->
-<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between gap-space-sm">
-<div class="flex items-center gap-space-md min-w-0">
-<div class="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center flex-shrink-0 text-primary">
-<span class="material-symbols-outlined text-[32px]">bedtime</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-label-md text-label-md text-primary font-bold">21:00 PM • Noche</span>
-<span class="font-headline-md text-headline-md text-on-surface truncate">Atorvastatina 20 mg</span>
-<span class="font-body-md text-body-md text-on-surface-variant">1 pastilla antes de dormir</span>
-</div>
-</div>
-<span class="px-space-xs py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md flex-shrink-0">
-          Pendiente
-        </span>
-</div>
-</div>
-</section>
-<!-- SECCIÓN 4: Acceso Rápido y Ayuda Familiar -->
-<section class="bg-surface-container-high p-space-md rounded-xl flex flex-col gap-space-md mt-space-xs shadow-sm">
-<div class="flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-[28px] text-primary" style="font-variation-settings: 'FILL' 1;">support_agent</span>
-<h3 class="font-headline-md text-headline-md text-on-surface">¿Necesitas ayuda o compañía?</h3>
-</div>
-<div class="flex flex-col gap-space-sm">
-<!-- Botón Directo Llamar Hija -->
-<a class="w-full min-h-[64px] px-space-md py-space-sm rounded-xl bg-surface-container-lowest text-primary font-headline-md text-headline-md flex items-center justify-between shadow-sm active:bg-surface-container transition-colors" href="tel:+56912345678">
-<div class="flex items-center gap-space-sm">
-<div class="w-12 h-12 rounded-full bg-secondary-container text-secondary flex items-center justify-center flex-shrink-0">
-<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">call</span>
-</div>
-<div class="flex flex-col text-left">
-<span class="font-headline-md text-headline-md text-on-surface">Llamar a mi Hija María</span>
-<span class="font-body-md text-body-md text-on-surface-variant">Contacto de confianza principal</span>
-</div>
-</div>
-<span class="material-symbols-outlined text-[32px] text-secondary">phone_forwarded</span>
-</a>
-<!-- Asistencia por Voz -->
-<button aria-label="Activar ayuda por voz para leer la pantalla" class="w-full min-h-[58px] px-space-md py-space-xs rounded-xl bg-primary-container text-on-primary-container font-label-lg text-label-lg flex items-center justify-center gap-space-xs active:bg-primary transition-colors" onclick="activarAsistenteVoz()">
-<span class="material-symbols-outlined text-[28px]">mic</span>
-<span>Escuchar mi resumen en voz alta</span>
-</button>
-</div>
-</section>
-</div>
-<script>
-  function marcarTomado() {
-    const btn = document.getElementById('btn-tomar-losartan');
-    const btnPosponer = document.getElementById('btn-posponer');
-    const feedback = document.getElementById('feedback-tomado');
-    const card = document.getElementById('card-losartan');
-
-    btn.classList.add('hidden');
-    btnPosponer.classList.add('hidden');
-    feedback.classList.remove('hidden');
-    card.classList.add('bg-secondary-container/20');
-
-    // Reproducir feedback de voz si el navegador lo soporta
-    if ('speechSynthesis' in window) {
-      const mensaje = new SpeechSynthesisUtterance('¡Excelente, Don Carlos! Se ha registrado su toma de Losartán.');
-      mensaje.lang = 'es-ES';
-      window.speechSynthesis.speak(mensaje);
-    }
-  }
-
-  function posponerAlarma() {
-    const btnPosponer = document.getElementById('btn-posponer');
-    btnPosponer.innerHTML = '<span class="material-symbols-outlined text-[28px]">check</span> Pospuesto 15 minutos (08:45 AM)';
-    btnPosponer.disabled = true;
-    btnPosponer.classList.add('opacity-75');
-
-    if ('speechSynthesis' in window) {
-      const mensaje = new SpeechSynthesisUtterance('Alarma pospuesta por quince minutos.');
-      mensaje.lang = 'es-ES';
-      window.speechSynthesis.speak(mensaje);
-    }
-  }
-
-  function activarAsistenteVoz() {
-    if ('speechSynthesis' in window) {
-      const texto = 'Buenos días Don Carlos. Hoy es miércoles 24 de octubre. Le toca tomar Losartán de 50 miligramos a las ocho y media con su desayuno, y a las once de la mañana tiene su examen de sangre en ayunas en el Hospital Clínico Central.';
-      const mensaje = new SpeechSynthesisUtterance(texto);
-      mensaje.lang = 'es-ES';
-      mensaje.rate = 0.9; // Hablar más pausado para el adulto mayor
-      window.speechSynthesis.speak(mensaje);
-    } else {
-      alert('Tu teléfono está leyendo la información.');
-    }
-  }
-</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.06)]" data-active-classes="text-primary font-bold"><div class="h-20 max-w-xl mx-auto px-space-xs grid grid-cols-4 items-stretch"><a aria-label="Mi Día" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl text-on-surface-variant transition-colors hover:text-on-surface active:bg-surface-container" data-path="mi-dia" href="#"><span class="material-symbols-outlined text-[32px]">today</span><span class="font-label-md text-label-md tracking-tight">Mi Día</span></a><a aria-label="Remedios" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl text-on-surface-variant transition-colors hover:text-on-surface active:bg-surface-container" data-path="remedios" href="#"><span class="material-symbols-outlined text-[32px]">medication</span><span class="font-label-md text-label-md tracking-tight">Remedios</span></a><a aria-label="Citas Médicas" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl text-on-surface-variant transition-colors hover:text-on-surface active:bg-surface-container" data-path="citas" href="#"><span class="material-symbols-outlined text-[32px]">calendar_month</span><span class="font-label-md text-label-md tracking-tight">Citas</span></a><a aria-label="Agregar Nuevo" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl text-on-surface-variant transition-colors hover:text-on-surface active:bg-surface-container" data-path="agregar-nuevo" href="#"><span class="material-symbols-outlined text-[32px] text-secondary">add_circle</span><span class="font-label-md text-label-md tracking-tight text-secondary">Nuevo</span></a></div></nav><script>
-  (function () {
-    const base = '../';
-    const paths = {
-      'mi-dia': 'mi_d_a_resumen_diario_y_alarmas',
-      remedios: 'mis_remedios_y_alarmas',
-      'escanear-receta': 'escanear_papel_o_receta_m_dica',
-      citas: 'citas_m_dicas_y_ex_menes',
-      'agregar-nuevo': 'agregar_remedio_o_cita_paso_a_paso',
-      emergencia: 'ficha_de_emergencia_m_dica_y_sos'
-    };
-    document.querySelectorAll('[data-path]').forEach(function (link) {
-      const target = paths[link.dataset.path];
-      if (target) link.href = base + target + '/code.html';
-    });
-  })();
-</script></body></html>
+</head>
+<body>
+  <header><div class="row"><strong>TeCuido</strong><button class="secondary" id="logout">Cerrar sesión</button></div></header>
+  <main>
+    <div class="row"><div><h1 id="greeting">Mi día</h1><div class="muted" id="today"></div></div><a class="button" href="../ficha_de_emergencia_m_dica_y_sos/code.html">Ayuda</a></div>
+    <div id="notice" class="notice">Cargando tu información...</div>
+    <section class="panel"><div class="row"><h2 style="margin:0">Remedios de hoy</h2><a class="secondary button" href="../mis_remedios_y_alarmas/code.html">Administrar</a></div><div id="doses"></div></section>
+    <section class="panel"><div class="row"><h2 style="margin:0">Próximas citas</h2><a class="secondary button" href="../citas_m_dicas_y_ex_menes/code.html">Ver citas</a></div><div id="appointments"></div></section>
+    <section class="panel"><h2>Tu información médica</h2><p id="profile-summary" class="muted">Cargando ficha...</p><a class="button secondary" href="../ficha_medica/code.html">Ver o editar ficha</a></section>
+    <p class="muted">Los recordatorios son visibles dentro de la aplicación. Las notificaciones automáticas aunque esté cerrada aún no están configuradas.</p>
+  </main>
+  <nav aria-label="Navegación principal"><a aria-current="page" href="./code.html">Mi día</a><a href="../mis_remedios_y_alarmas/code.html">Remedios</a><a href="../citas_m_dicas_y_ex_menes/code.html">Citas</a><a href="../ficha_medica/code.html">Ficha</a></nav>
+  <script>
+    if (!window.Tecuido.hasSession()) location.replace('../login/code.html');
+    const notice=document.getElementById('notice'),doseArea=document.getElementById('doses'),appointmentArea=document.getElementById('appointments'),profileSummary=document.getElementById('profile-summary');
+    const today=new Date();today.setHours(0,0,0,0);const tomorrow=new Date(today);tomorrow.setDate(tomorrow.getDate()+1);
+    document.getElementById('today').textContent=today.toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long'});
+    function text(parent,tag,value,className){const el=document.createElement(tag);el.textContent=value;if(className)el.className=className;parent.appendChild(el);return el;}
+    function localSchedule(time){const [hours,minutes]=time.split(':').map(Number);const at=new Date(today);at.setHours(hours,minutes,0,0);return at;}
+    async function load(){try{const [medResult,appointmentResult,profileResult,doseResult]=await Promise.all([window.Tecuido.request('/api/medications'),window.Tecuido.request('/api/appointments'),window.Tecuido.request('/api/profile/medical'),window.Tecuido.request('/api/medication-doses?from='+encodeURIComponent(today.toISOString())+'&to='+encodeURIComponent(tomorrow.toISOString()))]);const meds=(medResult.medications||[]).filter(m=>m.active);const appointments=(appointmentResult.appointments||[]).filter(a=>!a.completed&&new Date(a.starts_at)>=new Date()).slice(0,3);const doses=doseResult.doses||[];const profile=profileResult.medicalProfile||{};document.getElementById('greeting').textContent=profile.fullName?'Hola, '+profile.fullName.split(' ')[0]:'Mi día';profileSummary.textContent=profile.fullName?['Ficha médica guardada',profile.bloodType?'Grupo sanguíneo '+profile.bloodType:'',profile.emergencyContact?'Contacto de emergencia registrado':''].filter(Boolean).join(' · '):'Aún no has completado tu ficha médica.';renderDoses(meds,doses);renderAppointments(appointments);const pending=meds.reduce((count,med)=>count+(med.times||[]).filter(time=>!doses.some(d=>d.medication_id===med.id&&Math.abs(new Date(d.scheduled_for)-localSchedule(time))<120000)).length,0);notice.textContent=pending?('Tienes '+pending+' toma'+(pending===1?' pendiente':'s pendientes')+' programada'+(pending===1?'':'s')+' para hoy.'):meds.length?'No quedan tomas pendientes según los registros de hoy.':'Agrega tus remedios para organizar tus tomas.';}catch(error){notice.textContent=error.message;notice.classList.add('error');doseArea.replaceChildren();text(doseArea,'p','No pudimos cargar tu día.','empty');}}
+    function renderDoses(meds,doses){doseArea.replaceChildren();if(!meds.length){text(doseArea,'p','No has agregado remedios activos.','empty');return;}let count=0;meds.forEach(med=>{(med.times||[]).forEach(time=>{count++;const scheduled=localSchedule(time);const record=doses.find(d=>d.medication_id===med.id&&Math.abs(new Date(d.scheduled_for)-scheduled)<120000);const row=document.createElement('div');row.className='dose';const info=document.createElement('div');text(info,'strong',med.name);text(info,'div',time+' · '+(med.dosage||med.strength||'Horario programado'),'muted');row.appendChild(info);if(record){text(row,'span',record.status==='taken'?'Registrado como tomado':'Omitido','chip');}else{const button=document.createElement('button');button.textContent='Registrar toma';button.addEventListener('click',async()=>{button.disabled=true;try{await window.Tecuido.request('/api/medications/'+encodeURIComponent(med.id)+'/doses',{method:'POST',body:{status:'taken',scheduledFor:scheduled.toISOString()}});await load();}catch(error){notice.textContent=error.message;notice.classList.add('error');button.disabled=false;}});row.appendChild(button);}doseArea.appendChild(row);});});if(!count)text(doseArea,'p','No definiste horarios para tus remedios. Puedes agregarlos desde Remedios.','empty');}
+    function renderAppointments(items){appointmentArea.replaceChildren();if(!items.length){text(appointmentArea,'p','No tienes citas próximas registradas.','empty');return;}items.forEach(item=>{const row=document.createElement('div');row.className='dose';const info=document.createElement('div');text(info,'strong',item.title);text(info,'div',new Date(item.starts_at).toLocaleString('es-CL',{dateStyle:'medium',timeStyle:'short'}),'muted');row.appendChild(info);appointmentArea.appendChild(row);});}
+    document.getElementById('logout').addEventListener('click',async()=>{await window.Tecuido.logout();location.replace('../login/code.html');});
+    load();
+  </script>
+</body>
+</html>

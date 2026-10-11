@@ -12,3 +12,7 @@ services:
         sync: false
       - key: UBER_API_BASE_URL
         value: https://api.uber.com
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false

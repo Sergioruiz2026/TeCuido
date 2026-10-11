@@ -26,6 +26,9 @@ function visitHtml(directory) {
     if (!html.includes('src="../config.js"')) {
       html = html.replace(/<\/head>/i, '<script src="../config.js"></script></head>');
     }
+    if (!html.includes('src="../shared.js"')) {
+      html = html.replace(/<\/head>/i, '<script src="../shared.js"></script></head>');
+    }
 
     fs.writeFileSync(entryPath, html, 'utf8');
   }

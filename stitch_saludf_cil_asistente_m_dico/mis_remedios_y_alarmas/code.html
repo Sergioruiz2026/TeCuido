@@ -1,371 +1,54 @@
-<!DOCTYPE html>
-
-<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>TeCuido</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,400..700,0..1,-50..200" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed-variant": "#00429c", "on-primary": "#ffffff", "inverse-on-surface": "#eef0ff", "secondary": "#006d30", "surface-variant": "#dae2fd", "surface-bright": "#faf8ff", "inverse-surface": "#283044", "tertiary-container": "#8c2900", "on-primary-fixed": "#001945", "secondary-fixed-dim": "#79db8d", "surface-container-high": "#e2e7ff", "on-surface": "#131b2e", "on-tertiary-container": "#ffa689", "on-tertiary-fixed": "#390c00", "on-secondary-fixed": "#00210a", "primary-container": "#0d47a1", "on-background": "#131b2e", "surface-container-lowest": "#ffffff", "inverse-primary": "#b0c6ff", "tertiary-fixed": "ffdbd0", "error": "#ba1a1a", "on-secondary-fixed-variant": "#005323", "tertiary-fixed-dim": "#ffb59d", "on-tertiary-fixed-variant": "#832600", "on-secondary-container": "#007233", "primary-fixed-dim": "#b0c6ff", "secondary-container": "#92f5a4", "tertiary": "#651b00", "secondary-fixed": "#95f8a7", "primary-fixed": "#d9e2ff", "surface": "#faf8ff", "on-secondary": "#ffffff", "error-container": "#ffdad6", "surface-container": "#eaedff", "outline-variant": "#c3c6d4", "on-surface-variant": "#434652", "surface-container-low": "#f2f3ff", "surface-tint": "#2b5bb5", "outline": "#737783", "on-error-container": "#93000a", "surface-container-highest": "#dae2fd", "on-primary-container": "#a1bbff", "background": "#faf8ff", "primary": "#003178", "surface-dim": "#d2d9f4", "on-error": "#ffffff", "on-tertiary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.75rem", "gutter": "1rem", "margin": "1.25rem", "space-lg": "1.75rem", "space-xs": "0.5rem", "space-xl": "2.5rem", "space-md": "1.25rem" }, "fontFamily": { "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-xl": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"] }, "fontSize": { "headline-xl-mobile": ["30px", { "lineHeight": "40px", "fontWeight": "800" }], "headline-md": ["22px", { "lineHeight": "32px", "fontWeight": "700" }], "body-lg": ["18px", { "lineHeight": "30px", "fontWeight": "400" }], "label-lg": ["18px", { "lineHeight": "26px", "fontWeight": "700" }], "headline-xl": ["36px", { "lineHeight": "48px", "fontWeight": "800" }], "body-xl": ["20px", { "lineHeight": "32px", "fontWeight": "500" }], "body-md": ["18px", { "lineHeight": "28px", "fontWeight": "500" }], "headline-lg-mobile": ["24px", { "lineHeight": "34px", "fontWeight": "700" }], "label-md": ["16px", { "lineHeight": "24px", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "38px", "fontWeight": "700" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mis remedios - TeCuido</title>
+  <script src="../config.js"></script><script src="../shared.js"></script>
+  <style>
+    :root{font:16px system-ui,sans-serif;color:#17233b;background:#f5f7fc}*{box-sizing:border-box}body{margin:0;padding:0 0 88px}header{background:#fff;padding:16px max(20px,calc((100vw - 680px)/2));box-shadow:0 2px 12px #17233b12;position:sticky;top:0;z-index:1}header strong{font-size:21px;color:#003178}main{max-width:680px;margin:auto;padding:20px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}h1{font-size:27px;margin:14px 0 4px}p{line-height:1.45}button,a.button{border:0;border-radius:12px;background:#003178;color:white;padding:12px 16px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;min-height:46px}button.secondary,a.secondary{background:#e5ebf7;color:#17356a}button.danger{background:#ffe6e4;color:#9e1710}button:disabled{opacity:.55}form,.card,.notice{background:#fff;border:1px solid #e2e7f1;border-radius:18px;padding:18px;margin:16px 0;box-shadow:0 4px 16px #17233b08}label{display:block;font-weight:650;margin:12px 0 6px}input,textarea{width:100%;min-height:46px;border:1px solid #b9c4d7;border-radius:10px;padding:10px;font:inherit;color:inherit}textarea{min-height:74px;resize:vertical}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.times{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.chip{border-radius:20px;background:#e7edfa;padding:6px 10px}.card h2{margin:0 0 6px;font-size:20px}.card p{margin:6px 0;color:#46536b}.muted{color:#5a6579}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.status{min-height:24px;color:#9e1710;margin:8px 0}.status.ok{color:#006d30}.empty{text-align:center;padding:28px 12px;color:#536078}.hidden{display:none!important}nav{position:fixed;bottom:0;width:100%;display:flex;justify-content:center;gap:8px;background:#fff;padding:10px env(safe-area-inset-right) calc(10px + env(safe-area-inset-bottom));box-shadow:0 -2px 12px #17233b12}nav a{flex:1;max-width:150px;text-align:center;text-decoration:none;color:#324667;padding:9px 4px;border-radius:10px}nav a[aria-current=page]{background:#e8eef9;color:#003178;font-weight:700}@media(max-width:460px){.grid{grid-template-columns:1fr}}
   </style>
-  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-20 px-gutter flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-sm min-w-0"><img alt="Logo TeCuido Accesible" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1U-r1HFN5HDSWvx_lP2Wov0VGbV8XXCrdxLZs2SZPSlRoLYz_DF9fSQGSrDDBezOGnIdCuP2XR_ZCZdWDw77_Zh2zEdQ-arTvok7jehok2npSDhI-2NCg4fKDiC1X8IDU2vWz_mkysM5wmpFtA3vyjHVIllb7ilU90RTGMmEmznNzs0r_LswpphZV_eNzHZHRYb7mdIGCk-JYT6aGtZmTkUztW858t5oDlSXRzy_cW_atTo97j37vTgzXMH"/><div class="flex flex-col justify-center min-w-0"><span class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight truncate">TeCuido</span><span class="font-label-md text-label-md text-on-surface-variant truncate">Remedios</span></div></div><div class="flex items-center gap-space-sm flex-shrink-0"><a aria-label="Pedir Ayuda o Llamar a Emergencia" class="min-h-[48px] px-space-sm py-space-xs rounded-xl bg-error text-on-error flex items-center gap-space-xs shadow-[0_2px_8px_rgba(186,26,26,0.25)] active:scale-95 transition-all" data-path="emergencia" href="#"><span class="material-symbols-outlined text-[24px]">call</span><span class="font-label-md text-label-md hidden sm:inline">Ayuda</span></a><a aria-label="Abrir inicio de sesi�n y perfil" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0" href="../login/code.html"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div></div></header><main class="flex flex-col relative w-full pt-20 pb-28 bg-surface max-w-xl mx-auto min-h-screen"><div class="flex flex-col w-full px-gutter pb-space-xl">
-<!-- Friendly Reassurance & Header Section -->
-<section class="flex flex-col gap-space-xs mt-space-md mb-space-md">
-<div class="inline-flex items-center gap-space-xs self-start px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">verified</span>
-<span class="font-label-md text-label-md">Plan Médico al Día</span>
-</div>
-<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-primary tracking-tight">
-      Mis Remedios Diarios
-    </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant">
-      Aquí puedes revisar todas tus pastillas, horarios y configurar las alarmas con sonido fuerte.
-    </p>
-</section>
-<!-- Big Tactile Master Alarm Switch -->
-<section class="mb-space-lg">
-<div class="bg-surface-container-high rounded-xl p-space-md shadow-md flex flex-col gap-space-sm transition-all duration-200" id="master-alarm-card">
-<div class="flex items-center justify-between gap-space-sm">
-<div class="flex items-center gap-space-sm min-w-0">
-<div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center flex-shrink-0 text-on-primary shadow-sm" id="master-alarm-icon-bg">
-<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">volume_up</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-label-md text-label-md text-on-surface-variant">Sonido General</span>
-<span class="font-headline-md text-headline-md text-primary tracking-tight" id="master-alarm-status">
-              ACTIVADO
-            </span>
-</div>
-</div>
-<button aria-pressed="true" class="min-h-[58px] px-space-md bg-secondary text-on-secondary rounded-xl font-label-lg text-label-lg flex items-center gap-space-xs shadow-md active:scale-95 transition-transform" id="toggle-master-alarm" type="button">
-<span class="material-symbols-outlined text-[26px]">notifications_active</span>
-<span>Alto</span>
-</button>
-</div>
-<div class="bg-surface-container-lowest rounded-lg p-space-sm flex items-center gap-space-xs">
-<span class="material-symbols-outlined text-secondary text-[24px]">volume_up</span>
-<span class="font-body-md text-body-md text-on-surface">
-          Sonando a <strong>volumen máximo</strong> con timbre nítido.
-        </span>
-</div>
-</div>
-</section>
-<!-- Day Shift Filters (Large touch targets) -->
-<section class="mb-space-lg">
-<span class="block font-label-lg text-label-lg text-on-surface mb-space-xs">Ver pastillas por momento:</span>
-<div aria-label="Filtrar por momento del día" class="grid grid-cols-2 gap-space-xs" role="tablist">
-<button aria-selected="true" class="filter-pill active-filter min-h-[56px] rounded-xl font-label-md text-label-md flex items-center justify-center gap-space-xs bg-primary text-on-primary shadow-sm active:scale-95 transition-all" data-filter="all" type="button">
-<span class="material-symbols-outlined text-[24px]">list_alt</span>
-<span>Todos (3)</span>
-</button>
-<button aria-selected="false" class="filter-pill min-h-[56px] rounded-xl font-label-md text-label-md flex items-center justify-center gap-space-xs bg-surface-container-high text-on-surface shadow-sm active:scale-95 transition-all" data-filter="morning" type="button">
-<span class="text-[20px]">☀️</span>
-<span>Mañana (1)</span>
-</button>
-<button aria-selected="false" class="filter-pill min-h-[56px] rounded-xl font-label-md text-label-md flex items-center justify-center gap-space-xs bg-surface-container-high text-on-surface shadow-sm active:scale-95 transition-all" data-filter="afternoon" type="button">
-<span class="text-[20px]">🌤️</span>
-<span>Tarde (1)</span>
-</button>
-<button aria-selected="false" class="filter-pill min-h-[56px] rounded-xl font-label-md text-label-md flex items-center justify-center gap-space-xs bg-surface-container-high text-on-surface shadow-sm active:scale-95 transition-all" data-filter="night" type="button">
-<span class="text-[20px]">🌙</span>
-<span>Noche (1)</span>
-</button>
-</div>
-</section>
-<!-- MEDICATION CARDS LIST -->
-<section class="flex flex-col gap-space-md mb-space-xl" id="medications-container">
-<!-- CARD 1: Losartán (Morning - Already Taken) -->
-<article class="med-card bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-sm" data-period="morning">
-<div class="flex items-center justify-between gap-space-xs">
-<span class="px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md flex items-center gap-1">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
-          Mañana • 08:30 AM
-        </span>
-<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md">
-          Presión Arterial
-        </span>
-</div>
-<div class="flex gap-space-sm items-start">
-<div class="w-20 h-20 rounded-xl bg-surface-container overflow-hidden flex-shrink-0 flex items-center justify-center shadow-inner">
-<img class="w-full h-full object-cover" data-alt="Fotografía nítida en primer plano de un comprimido blanco redondo de medicina Losartán sobre una mesa limpia de madera clara con luz suave y natural, estilo médico claro y amigable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Dur6lGKYqQXQm0ltGzVjBTeuaH8lEex5ESOcPLlM9Ixa9-3CsQujZJA1-PFyzDUxHPxE6a5lKZnceIu5RLdITUs7M68dWGVtx-bf3IhzkUR_G66FGetp856u3crMIPzUX4ysSjl0Sy1-eTpTHFEmnn6Dk74dgbymAhwFKU21rUPtHHsPRX7Ad7KiN2SqkVqj5M7SwDqnTu95FCDW6MXRiVsAAWpeDAN1pzLc1hvpc-KoDaiT8FKyJA"/>
-</div>
-<div class="flex flex-col min-w-0">
-<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">
-            Losartán 50 mg
-          </h2>
-<p class="font-body-md text-body-md text-on-surface-variant">
-            1 comprimido blanco redondo
-          </p>
-<p class="font-body-md text-body-md text-on-surface font-semibold">
-            🍽️ Tomar con el desayuno
-          </p>
-</div>
-</div>
-<!-- State: Already Taken -->
-<div class="bg-secondary-container text-on-secondary-container rounded-xl p-space-sm flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-[32px] text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<div class="flex flex-col">
-<span class="font-label-lg text-label-lg">¡Tomado con éxito hoy!</span>
-<span class="font-body-md text-body-md">Registrado a las 08:32 AM</span>
-</div>
-</div>
-<!-- Alarm Info -->
-<div class="bg-surface-container-low rounded-lg p-space-sm flex items-center gap-space-xs text-on-surface-variant">
-<span class="material-symbols-outlined text-primary text-[24px]">notifications</span>
-<span class="font-body-md text-body-md">
-          Alarma sonó: <strong>Campana Fuerte</strong>
-</span>
-</div>
-<!-- Action Button -->
-<button class="min-h-[58px] w-full rounded-xl bg-surface-container-high text-primary font-label-lg text-label-lg flex items-center justify-center gap-space-xs active:bg-surface-variant transition-colors" onclick="alert('Abriendo ajustes de horario para Losartán')" type="button">
-<span class="material-symbols-outlined text-[26px]">tune</span>
-<span>Cambiar horario o alarma</span>
-</button>
-</article>
-<!-- CARD 2: Metformina (Afternoon - Pending) -->
-<article class="med-card bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-sm" data-period="afternoon">
-<div class="flex items-center justify-between gap-space-xs">
-<span class="px-space-sm py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md flex items-center gap-1">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">light_mode</span>
-          Tarde • 14:00 PM
-        </span>
-<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md">
-          Control Azúcar
-        </span>
-</div>
-<div class="flex gap-space-sm items-start">
-<div class="w-20 h-20 rounded-xl bg-surface-container overflow-hidden flex-shrink-0 flex items-center justify-center shadow-inner">
-<img class="w-full h-full object-cover" data-alt="Fotografía clara y de alto contraste de una tableta grande oblonga de color blanco con una ranura en el centro descansando en un pequeño plato de cerámica azul pastel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY0brZ_GWDTQdYO1LJnKfa3WOs0tcdl41CHuMY0n9m2qVszqH0YVGZ44bRWf6qAtIgtV5mT5sQtHTpCGy5u2p6qMJ5pf9cW0Nvxvf7dvYFiVHfakyR8cqHGDa7QRxWAJmm_9kPEYjI5lsCU8UpOkBaMSgktxCQozagrS65S6bcCbN1F5-o4sHTPBiTp1ZsJ9m-2_npiV-p7zlyJ-EfoVRS3A-sRvfRGP6W-BnjviCMEm-wzO1b2H2nHA"/>
-</div>
-<div class="flex flex-col min-w-0">
-<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">
-            Metformina 850 mg
-          </h2>
-<p class="font-body-md text-body-md text-on-surface-variant">
-            1 tableta grande alargada
-          </p>
-<p class="font-body-md text-body-md text-on-surface font-semibold">
-            🍲 Tomar con el almuerzo
-          </p>
-</div>
-</div>
-<!-- State: Pending -->
-<div class="bg-surface-container-high text-on-surface rounded-xl p-space-sm flex items-center gap-space-sm" id="metformina-status">
-<span class="material-symbols-outlined text-[32px] text-primary">schedule</span>
-<div class="flex flex-col">
-<span class="font-label-lg text-label-lg text-primary">Pendiente para hoy</span>
-<span class="font-body-md text-body-md text-on-surface-variant">Sonará la alarma en 3 horas</span>
-</div>
-</div>
-<!-- Alarm Info -->
-<div class="bg-surface-container-low rounded-lg p-space-sm flex items-center gap-space-xs text-on-surface-variant">
-<span class="material-symbols-outlined text-secondary text-[24px]">vibration</span>
-<span class="font-body-md text-body-md">
-          Alarma activada con <strong>vibración y sonido alto</strong>
-</span>
-</div>
-<!-- Big Primary Action Button -->
-<button class="min-h-[64px] w-full rounded-xl bg-secondary text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow-md active:scale-95 transition-all" id="btn-take-metformina" type="button">
-<span class="material-symbols-outlined text-[30px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span>Marcar como Tomado ahora</span>
-</button>
-</article>
-<!-- CARD 3: Atorvastatina (Night - Pending) -->
-<article class="med-card bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-sm" data-period="night">
-<div class="flex items-center justify-between gap-space-xs">
-<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">bedtime</span>
-          Noche • 21:00 PM
-        </span>
-<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md">
-          Colesterol
-        </span>
-</div>
-<div class="flex gap-space-sm items-start">
-<div class="w-20 h-20 rounded-xl bg-surface-container overflow-hidden flex-shrink-0 flex items-center justify-center shadow-inner">
-<img class="w-full h-full object-cover" data-alt="Fotografía nítida y cálida de una pastilla pequeña redonda blanca de Atorvastatina junto a un vaso de agua fresca sobre una mesita de noche de madera con luz tenue nocturna." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQPPFBYFT-ApBgxDiYSjD1jegHFbsOh1aDbWuW3EWpkQNJKotuS4GDgv6FBEAQ0LG7odFkW6iVfxO7BIcXtFEGGDItJb0DSZXeitkoWm0Frj7NHPJZVAMGX93ZV3zZVJWR5YxYo2iIkXZpLAfWkinUQ7ztm5fiVo1HwZ3DOGbO4MeCMsOL19nYxYcVzeCMdlDr_E0RlPWDzBomGZIHelDseQtxo2Mn7zJHWuR_GGh7x_u-fXbbxzyTg"/>
-</div>
-<div class="flex flex-col min-w-0">
-<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">
-            Atorvastatina 20 mg
-          </h2>
-<p class="font-body-md text-body-md text-on-surface-variant">
-            1 comprimido pequeño
-          </p>
-<p class="font-body-md text-body-md text-on-surface font-semibold">
-            🛏️ Tomar antes de acostarse
-          </p>
-</div>
-</div>
-<!-- State: Pending for night -->
-<div class="bg-surface-container-high text-on-surface rounded-xl p-space-sm flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-[32px] text-on-surface-variant">nightlight</span>
-<div class="flex flex-col">
-<span class="font-label-lg text-label-lg text-on-surface">Pendiente para la noche</span>
-<span class="font-body-md text-body-md text-on-surface-variant">Falta para el horario programado</span>
-</div>
-</div>
-<!-- Alarm Info -->
-<div class="bg-surface-container-low rounded-lg p-space-sm flex items-center gap-space-xs text-on-surface-variant">
-<span class="material-symbols-outlined text-primary text-[24px]">notifications_active</span>
-<span class="font-body-md text-body-md">
-          🔔 Alarma activada para las 21:00 PM
-        </span>
-</div>
-<!-- Secondary Action -->
-<button class="min-h-[58px] w-full rounded-xl bg-surface-container-high text-primary font-label-lg text-label-lg flex items-center justify-center gap-space-xs active:bg-surface-variant transition-colors" onclick="alert('Abriendo ajustes de horario para Atorvastatina')" type="button">
-<span class="material-symbols-outlined text-[26px]">tune</span>
-<span>Cambiar horario o alarma</span>
-</button>
-</article>
-</section>
-<!-- SPECIAL SAFETY SECTION: Family Guardian Notification -->
-<section class="mb-space-xl">
-<div class="bg-surface-container-high rounded-xl p-space-md shadow-md flex flex-col gap-space-sm">
-<div class="flex items-center gap-space-sm">
-<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary flex-shrink-0 shadow-sm">
-<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
-</div>
-<div class="flex flex-col">
-<span class="font-label-md text-label-md text-primary">Protección TeCuido</span>
-<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">
-            Aviso a Familiar si Olvidas Tomar
-          </h2>
-</div>
-</div>
-<div class="bg-surface-container-lowest rounded-xl p-space-md flex flex-col gap-space-xs shadow-sm">
-<p class="font-body-lg text-body-lg text-on-surface">
-          Si pasan <strong>30 minutos</strong> sin confirmar la alarma, se enviará un mensaje automático de tranquilidad a:
-        </p>
-<div class="flex items-center justify-between gap-space-sm mt-space-xs p-space-sm bg-surface-container-low rounded-lg">
-<div class="flex items-center gap-space-xs">
-<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-lg text-label-lg">
-              M
-            </div>
-<div class="flex flex-col">
-<span class="font-label-lg text-label-lg text-on-surface">María (Hija)</span>
-<span class="font-body-md text-body-md text-on-surface-variant">+56 9 8765 4321</span>
-</div>
-</div>
-<span class="px-space-xs py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">verified</span>
-            Activo
-          </span>
-</div>
-</div>
-<button class="min-h-[56px] w-full rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-space-xs active:bg-surface-container-highest transition-colors" onclick="alert('Puedes cambiar el contacto de auxilio o agregar otro familiar.')" type="button">
-<span class="material-symbols-outlined text-[24px]">contacts</span>
-<span>Configurar o cambiar familiar de aviso</span>
-</button>
-</div>
-</section>
-<!-- Big Sticky/Prominent Add Button -->
-<section class="mt-space-sm">
-<button aria-label="Agregar un nuevo medicamento con alarma" class="min-h-[64px] w-full rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-space-sm shadow-md active:scale-95 transition-transform" onclick="alert('Abriendo formulario paso a paso para nuevo remedio')" type="button">
-<span class="material-symbols-outlined text-[32px]">add_circle</span>
-<span>Agregar Nuevo Remedio</span>
-</button>
-<p class="text-center font-body-md text-body-md text-on-surface-variant mt-space-xs">
-      Puedes sacar una foto a tu receta médica o caja de remedio
-    </p>
-</section>
-</div>
-<script>
-  // Simple micro-interactions for tactile feedback tailored for elderly users
-  (function() {
-    // Filter Pills
-    const filterButtons = document.querySelectorAll('.filter-pill');
-    const medCards = document.querySelectorAll('.med-card');
-
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterButtons.forEach(b => {
-          b.classList.remove('bg-primary', 'text-on-primary');
-          b.classList.add('bg-surface-container-high', 'text-on-surface');
-          b.setAttribute('aria-selected', 'false');
-        });
-
-        btn.classList.remove('bg-surface-container-high', 'text-on-surface');
-        btn.classList.add('bg-primary', 'text-on-primary');
-        btn.setAttribute('aria-selected', 'true');
-
-        const filter = btn.getAttribute('data-filter');
-        medCards.forEach(card => {
-          if (filter === 'all' || card.getAttribute('data-period') === filter) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // Mark as Taken Action for Metformina
-    const btnTake = document.getElementById('btn-take-metformina');
-    const metforminaStatus = document.getElementById('metformina-status');
-
-    if (btnTake && metforminaStatus) {
-      btnTake.addEventListener('click', () => {
-        const now = new Date();
-        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        
-        metforminaStatus.className = 'bg-secondary-container text-on-secondary-container rounded-xl p-space-sm flex items-center gap-space-sm';
-        metforminaStatus.innerHTML = `
-          <span class="material-symbols-outlined text-[32px] text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-          <div class="flex flex-col">
-            <span class="font-label-lg text-label-lg">¡Tomado con éxito ahora!</span>
-            <span class="font-body-md text-body-md">Registrado hoy a las ${timeStr}</span>
-          </div>
-        `;
-
-        btnTake.disabled = true;
-        btnTake.className = 'min-h-[64px] w-full rounded-xl bg-surface-container text-on-surface-variant font-label-lg text-label-lg flex items-center justify-center gap-space-xs opacity-80 cursor-default';
-        btnTake.innerHTML = `
-          <span class="material-symbols-outlined text-[28px]">done_all</span>
-          <span>Dosis tomada hoy</span>
-        `;
-      });
-    }
-
-    // Master Alarm Toggle
-    const masterAlarmBtn = document.getElementById('toggle-master-alarm');
-    const masterAlarmStatus = document.getElementById('master-alarm-status');
-    const masterAlarmIcon = document.getElementById('master-alarm-icon-bg');
-    let alarmActive = true;
-
-    if (masterAlarmBtn && masterAlarmStatus && masterAlarmIcon) {
-      masterAlarmBtn.addEventListener('click', () => {
-        alarmActive = !alarmActive;
-        if (alarmActive) {
-          masterAlarmStatus.textContent = 'ACTIVADO';
-          masterAlarmStatus.className = 'font-headline-md text-headline-md text-primary tracking-tight';
-          masterAlarmBtn.className = 'min-h-[58px] px-space-md bg-secondary text-on-secondary rounded-xl font-label-lg text-label-lg flex items-center gap-space-xs shadow-md active:scale-95 transition-transform';
-          masterAlarmBtn.innerHTML = '<span class="material-symbols-outlined text-[26px]">notifications_active</span><span>Alto</span>';
-          masterAlarmIcon.className = 'w-14 h-14 rounded-full bg-primary flex items-center justify-center flex-shrink-0 text-on-primary shadow-sm';
-          masterAlarmIcon.innerHTML = '<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: \'FILL\' 1;">volume_up</span>';
-        } else {
-          masterAlarmStatus.textContent = 'EN SILENCIO';
-          masterAlarmStatus.className = 'font-headline-md text-headline-md text-error tracking-tight';
-          masterAlarmBtn.className = 'min-h-[58px] px-space-md bg-surface-container-highest text-on-surface rounded-xl font-label-lg text-label-lg flex items-center gap-space-xs shadow-md active:scale-95 transition-transform';
-          masterAlarmBtn.innerHTML = '<span class="material-symbols-outlined text-[26px]">volume_off</span><span>Activar</span>';
-          masterAlarmIcon.className = 'w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center flex-shrink-0 text-on-surface-variant shadow-sm';
-          masterAlarmIcon.innerHTML = '<span class="material-symbols-outlined text-[32px]">notifications_off</span>';
-        }
-      });
-    }
-  })();
-</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.06)]" data-active-classes="text-primary font-bold"><div class="h-20 max-w-xl mx-auto px-space-xs grid grid-cols-4 items-stretch"><a aria-label="Mi Día" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl text-on-surface-variant transition-colors hover:text-on-surface active:bg-surface-container" data-path="mi-dia" href="#"><span class="material-symbols-outlined text-[32px]">today</span><span class="font-label-md text-label-md tracking-tight">Mi Día</span></a><a aria-current="page" aria-label="Remedios" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl transition-colors active:bg-surface-container text-primary font-bold" data-path="remedios" href="#"><span class="material-symbols-outlined text-[32px]">medication</span><span class="font-label-md text-label-md tracking-tight">Remedios</span></a><a aria-label="Citas Médicas" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl text-on-surface-variant transition-colors hover:text-on-surface active:bg-surface-container" data-path="citas" href="#"><span class="material-symbols-outlined text-[32px]">calendar_month</span><span class="font-label-md text-label-md tracking-tight">Citas</span></a><a aria-label="Agregar Nuevo" class="flex flex-col items-center justify-center min-h-[64px] min-w-[64px] rounded-xl text-on-surface-variant transition-colors hover:text-on-surface active:bg-surface-container" data-path="agregar-nuevo" href="#"><span class="material-symbols-outlined text-[32px] text-secondary">add_circle</span><span class="font-label-md text-label-md tracking-tight text-secondary">Nuevo</span></a></div></nav><script>
-  (function () {
-    const base = '../';
-    const paths = {
-      'mi-dia': 'mi_d_a_resumen_diario_y_alarmas',
-      remedios: 'mis_remedios_y_alarmas',
-      'escanear-receta': 'escanear_papel_o_receta_m_dica',
-      citas: 'citas_m_dicas_y_ex_menes',
-      'agregar-nuevo': 'agregar_remedio_o_cita_paso_a_paso',
-      emergencia: 'ficha_de_emergencia_m_dica_y_sos'
-    };
-    document.querySelectorAll('[data-path]').forEach(function (link) {
-      const target = paths[link.dataset.path];
-      if (target) link.href = base + target + '/code.html';
-    });
-  })();
-</script></body></html>
+</head>
+<body>
+  <header><div class="top"><strong>TeCuido</strong><a class="button secondary" href="../ficha_medica/code.html">Mi ficha</a></div></header>
+  <main>
+    <div class="top"><div><h1>Mis remedios</h1><div class="muted">Tu lista personal y el registro de tomas.</div></div><button id="new-med">Agregar</button></div>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <form id="med-form" class="hidden">
+      <h2 id="form-title">Agregar remedio</h2>
+      <label for="name">Nombre del medicamento *</label><input id="name" required maxlength="120" autocomplete="off">
+      <div class="grid"><div><label for="strength">Concentración</label><input id="strength" maxlength="80" placeholder="Ej.: 50 mg"></div><div><label for="dosage">Dosis indicada</label><input id="dosage" maxlength="120" placeholder="Ej.: 1 comprimido"></div></div>
+      <label>Horarios de toma</label><div class="row"><input id="time-input" type="time" aria-label="Horario para agregar" style="max-width:170px"><button class="secondary" id="add-time" type="button">Añadir horario</button></div><div id="times" class="times"></div>
+      <label for="instructions">Indicaciones</label><textarea id="instructions" maxlength="500" placeholder="Solo lo indicado por tu profesional de salud"></textarea>
+      <label for="notes">Notas</label><textarea id="notes" maxlength="500"></textarea>
+      <div class="actions"><button id="save-med" type="submit">Guardar</button><button class="secondary" id="cancel-edit" type="button">Cancelar</button></div>
+    </form>
+    <section id="med-list" aria-live="polite"></section>
+    <p class="muted">Los horarios quedan guardados, pero las notificaciones del teléfono aún no están configuradas en esta versión.</p>
+  </main>
+  <nav aria-label="Navegación principal"><a href="../mi_d_a_resumen_diario_y_alarmas/code.html">Mi día</a><a aria-current="page" href="./code.html">Remedios</a><a href="../citas_m_dicas_y_ex_menes/code.html">Citas</a><a href="../ficha_medica/code.html">Ficha</a></nav>
+  <script>
+    if (!window.Tecuido.hasSession()) location.replace('../login/code.html');
+    const form=document.getElementById('med-form'),list=document.getElementById('med-list'),status=document.getElementById('status');
+    let medications=[], selectedTimes=[], editingId=null;
+    const fields={name:document.getElementById('name'),strength:document.getElementById('strength'),dosage:document.getElementById('dosage'),instructions:document.getElementById('instructions'),notes:document.getElementById('notes')};
+    function message(text,ok){status.textContent=text;status.classList.toggle('ok',Boolean(ok));}
+    function appendText(parent,tag,text,className){const el=document.createElement(tag);el.textContent=text;if(className)el.className=className;parent.appendChild(el);return el;}
+    function clearForm(){form.reset();selectedTimes=[];editingId=null;document.getElementById('form-title').textContent='Agregar remedio';document.getElementById('save-med').textContent='Guardar';renderTimes();form.classList.add('hidden');}
+    function renderTimes(){const box=document.getElementById('times');box.replaceChildren();selectedTimes.forEach((time,index)=>{const chip=document.createElement('span');chip.className='chip';chip.textContent=time+' ';const remove=document.createElement('button');remove.type='button';remove.className='secondary';remove.textContent='×';remove.setAttribute('aria-label','Quitar horario '+time);remove.addEventListener('click',()=>{selectedTimes.splice(index,1);renderTimes();});chip.appendChild(remove);box.appendChild(chip);});}
+    async function load(){list.replaceChildren();appendText(list,'p','Cargando remedios…','empty');try{const result=await window.Tecuido.request('/api/medications');medications=result.medications||[];render();}catch(error){list.replaceChildren();appendText(list,'p',error.message,'empty');}}
+    function render(){list.replaceChildren();const active=medications.filter(m=>m.active),inactive=medications.filter(m=>!m.active);if(!medications.length){appendText(list,'p','Todavía no has agregado remedios. Usa “Agregar” para crear tu lista.','empty');return;}for(const [label,items] of [['Activos',active],['Pausados',inactive]]){if(!items.length)continue;appendText(list,'h2',label);for(const med of items){const card=document.createElement('article');card.className='card';appendText(card,'h2',med.name);appendText(card,'p',[med.strength,med.dosage].filter(Boolean).join(' · ')||'Sin concentración ni dosis especificadas','');if(med.times?.length){const chips=document.createElement('div');chips.className='times';med.times.forEach(t=>appendText(chips,'span',t,'chip'));card.appendChild(chips);}if(med.instructions)appendText(card,'p','Indicaciones: '+med.instructions);if(med.notes)appendText(card,'p','Nota: '+med.notes);const actions=document.createElement('div');actions.className='actions';const take=document.createElement('button');take.textContent='Registrar toma ahora';take.disabled=!med.active;take.addEventListener('click',()=>recordDose(med));actions.appendChild(take);const edit=document.createElement('button');edit.className='secondary';edit.textContent='Editar';edit.addEventListener('click',()=>editMedication(med));actions.appendChild(edit);const toggle=document.createElement('button');toggle.className='secondary';toggle.textContent=med.active?'Pausar':'Reanudar';toggle.addEventListener('click',()=>updateMedication(med,{active:!med.active}));actions.appendChild(toggle);const remove=document.createElement('button');remove.className='danger';remove.textContent='Eliminar';remove.addEventListener('click',()=>deleteMedication(med));actions.appendChild(remove);card.appendChild(actions);list.appendChild(card);}}}
+    function editMedication(med){editingId=med.id;fields.name.value=med.name;fields.strength.value=med.strength||'';fields.dosage.value=med.dosage||'';fields.instructions.value=med.instructions||'';fields.notes.value=med.notes||'';selectedTimes=[...(med.times||[])];renderTimes();document.getElementById('form-title').textContent='Editar remedio';document.getElementById('save-med').textContent='Guardar cambios';form.classList.remove('hidden');form.scrollIntoView({behavior:'smooth',block:'start'});}
+    function formData(){return {name:fields.name.value.trim(),strength:fields.strength.value.trim(),dosage:fields.dosage.value.trim(),instructions:fields.instructions.value.trim(),notes:fields.notes.value.trim(),times:selectedTimes,active:true};}
+    async function updateMedication(med,changes){try{await window.Tecuido.request('/api/medications/'+encodeURIComponent(med.id),{method:'PATCH',body:changes});message('Cambios guardados.',true);await load();}catch(error){message(error.message);}}
+    async function deleteMedication(med){if(!confirm('¿Eliminar '+med.name+' y su historial de tomas?'))return;try{await window.Tecuido.request('/api/medications/'+encodeURIComponent(med.id),{method:'DELETE'});message('Remedio eliminado.',true);await load();}catch(error){message(error.message);}}
+    async function recordDose(med){const now=new Date();const nearest=(med.times||[]).map(time=>{const [h,m]=time.split(':').map(Number);const scheduled=new Date();scheduled.setHours(h,m,0,0);return scheduled;}).filter(time=>Math.abs(time-now)<90*60*1000).sort((a,b)=>Math.abs(a-now)-Math.abs(b-now))[0];if(!confirm('¿Registrar que tomaste '+med.name+' ahora?'))return;try{await window.Tecuido.request('/api/medications/'+encodeURIComponent(med.id)+'/doses',{method:'POST',body:{status:'taken',scheduledFor:(nearest||now).toISOString()}});message('Toma registrada.',true);}catch(error){message(error.message);}}
+    document.getElementById('new-med').addEventListener('click',()=>{clearForm();form.classList.remove('hidden');fields.name.focus();});
+    if(new URLSearchParams(location.search).get('new')==='1'){form.classList.remove('hidden');}
+    document.getElementById('cancel-edit').addEventListener('click',clearForm);
+    document.getElementById('add-time').addEventListener('click',()=>{const input=document.getElementById('time-input');if(!input.value)return message('Elige primero un horario.');if(selectedTimes.length>=8)return message('Puedes guardar hasta 8 horarios.');if(!selectedTimes.includes(input.value)){selectedTimes.push(input.value);selectedTimes.sort();renderTimes();}input.value='';});
+    form.addEventListener('submit',async event=>{event.preventDefault();const button=document.getElementById('save-med');button.disabled=true;try{const data=formData();if(editingId)await window.Tecuido.request('/api/medications/'+encodeURIComponent(editingId),{method:'PATCH',body:data});else await window.Tecuido.request('/api/medications',{method:'POST',body:data});message(editingId?'Cambios guardados.':'Remedio agregado.',true);clearForm();await load();}catch(error){message(error.message);}finally{button.disabled=false;}});
+    load();
+  </script>
+</body>
+</html>

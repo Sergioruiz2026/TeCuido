@@ -1,39 +1,45 @@
-# API de transporte de TeCuido
+# API de TeCuido
 
 ## Configuración
 
-1. Copia `.env.example` como `.env` y configura `PORT` y `UBER_ACCESS_TOKEN`.
-2. Usa un token OAuth de usuario emitido por Uber para el usuario que solicitará el viaje.
-3. Ejecuta:
+La API requiere Node.js 20 o posterior y un proyecto Supabase.
+
+1. Crea un proyecto Supabase.
+2. En el SQL Editor ejecuta [`supabase/schema.sql`](./supabase/schema.sql).
+3. En Render configura `SUPABASE_URL` y `SUPABASE_ANON_KEY` como variables de entorno. En desarrollo, define esas mismas variables en el proceso local; el servidor no carga archivos `.env` automáticamente.
+4. Inicia la API:
 
 ```powershell
-node src/server.js
+npm start
 ```
 
-El backend no lee automáticamente archivos `.env`; configura las variables desde el entorno de ejecución o mediante el gestor de secretos del despliegue.
+La clave `service_role` no es necesaria ni debe incluirse en Render o en el APK. La API usa la clave pública `anon` junto con el JWT del usuario, y las tablas aplican Row Level Security (RLS) con `auth.uid()`.
 
-## Credenciales y datos sensibles
+## Persistencia y acceso
 
-- Las contraseñas se almacenan con `crypto.scrypt`, salt aleatorio y comparación resistente a tiempo. No se guardan ni se recuperan en texto plano.
-- El correo se valida en el servidor y debe tener formato real, como `persona@example.com`.
-- El servidor de ejemplo almacena usuarios en memoria para desarrollo; al reiniciar se pierden. Antes de producción se debe conectar una base de datos con cifrado en reposo, copias protegidas, rotación de claves y control de acceso.
-- No se deben enviar contraseñas ni datos médicos a logs, analítica o el navegador fuera de HTTPS.
+- Supabase Auth gestiona registro, inicio de sesión, renovación y cierre de sesión.
+- Los perfiles médicos, remedios, tomas e citas se guardan en tablas Postgres con RLS por usuario.
+- Las tablas `medical_profiles`, `medications`, `appointments` y `medication_doses` se crean con el script de esquema incluido.
+- No se guardan credenciales de usuario ni registros en memoria local del servidor.
+- `/api/medical/access` permanece deshabilitado (HTTP 503): la lectura pública o para terceros requiere un flujo de autorización específico y auditable.
+- No habilites el uso con datos médicos reales hasta revisar obligaciones de privacidad aplicables, controles y copias de seguridad del proyecto Supabase.
 
 ## Endpoints
 
 - `GET /health`
-- `POST /api/transport/uber/estimate`
-- `POST /api/transport/uber/request`
-- `POST /api/medical/access` está temporalmente deshabilitado (HTTP 503) hasta implementar autorización segura para emergencias.
+- `POST /api/auth/register`, `/api/auth/login`, `/api/auth/refresh`, `/api/auth/logout`
+- `GET /api/profile/medical`, `PUT /api/profile/medical`
+- `GET|POST /api/medications`
+- `PATCH|DELETE /api/medications/:id`
+- `POST /api/medications/:id/doses`
+- `GET /api/medication-doses?from=<ISO>&to=<ISO>`
+- `GET|POST /api/appointments`
+- `PATCH|DELETE /api/appointments/:id`
+- `POST /api/transport/uber/estimate` y `/api/transport/uber/request`
+- `POST /api/medical/access` sigue deshabilitado hasta implementar autorización segura.
 
-Las rutas de viaje requieren coordenadas, no direcciones libres:
+Las operaciones personales requieren `Authorization: Bearer <access_token>`. Validación adicional del usuario se aplica en el servidor y RLS en Postgres.
 
-```json
-{
-  "origin": { "latitude": -33.45, "longitude": -70.66 },
-  "destination": { "latitude": -33.42, "longitude": -70.61 },
-  "rideType": "assist"
-}
-```
+### Uber
 
-La confirmación requiere además el `productId` devuelto por la consulta de productos. La aplicación no debe guardar tokens de Uber en el navegador.
+Configura `UBER_ACCESS_TOKEN` solo si se habilita la integración y se dispone de las credenciales y permisos requeridos. La confirmación de viajes no está disponible en la app mientras no exista un flujo autorizado y probado.
