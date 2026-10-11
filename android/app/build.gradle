@@ -7,11 +7,10 @@ android {
     // Configuración de firma para Release
     signingConfigs {
         release {
-            // Cambia la ruta a donde guardaste tu clave (usa / en lugar de \)
-            storeFile file("C:/Users/matia/tecuido-release.keystore")
-            storePassword "TU_CONTRASEÑA_KEYSTORE"   // Cambia por la contraseña de la keystore
+            storeFile file("C:/Users/matia/tecuido-release.jks") // O la extensión correcta
+            storePassword "TU_CONTRASEÑA"
             keyAlias "tecuido"
-            keyPassword "TU_CONTRASEÑA_KEY"          // Cambia por la contraseña del alias
+            keyPassword "TU_CONTRASEÑA"
         }
     }
 
