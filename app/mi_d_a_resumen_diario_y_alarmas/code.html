@@ -14,20 +14,50 @@
   <main>
     <div class="row"><div><h1 id="greeting">Mi día</h1><div class="muted" id="today"></div></div><a class="button" href="../ficha_de_emergencia_m_dica_y_sos/code.html">Ayuda</a></div>
     <div id="notice" class="notice">Cargando tu información...</div>
+    <section id="alarm-notice" class="notice" hidden role="status" aria-live="polite"><p id="alarm-message"></p><button class="secondary" id="alarm-settings" type="button">Abrir ajustes de la aplicación</button></section>
     <section class="panel"><div class="row"><h2 style="margin:0">Remedios de hoy</h2><a class="secondary button" href="../mis_remedios_y_alarmas/code.html">Administrar</a></div><div id="doses"></div></section>
     <section class="panel"><div class="row"><h2 style="margin:0">Próximas citas</h2><a class="secondary button" href="../citas_m_dicas_y_ex_menes/code.html">Ver citas</a></div><div id="appointments"></div></section>
     <section class="panel"><h2>Tu información médica</h2><p id="profile-summary" class="muted">Cargando ficha...</p><a class="button secondary" href="../ficha_medica/code.html">Ver o editar ficha</a></section>
-    <p class="muted">Los recordatorios son visibles dentro de la aplicación. Las notificaciones automáticas aunque esté cerrada aún no están configuradas.</p>
   </main>
   <nav aria-label="Navegación principal"><a aria-current="page" href="./code.html">Mi día</a><a href="../mis_remedios_y_alarmas/code.html">Remedios</a><a href="../citas_m_dicas_y_ex_menes/code.html">Citas</a><a href="../ficha_medica/code.html">Ficha</a></nav>
   <script>
     if (!window.Tecuido.hasSession()) location.replace('../login/code.html');
-    const notice=document.getElementById('notice'),doseArea=document.getElementById('doses'),appointmentArea=document.getElementById('appointments'),profileSummary=document.getElementById('profile-summary');
+    const notice=document.getElementById('notice'),doseArea=document.getElementById('doses'),appointmentArea=document.getElementById('appointments'),profileSummary=document.getElementById('profile-summary'),alarmNotice=document.getElementById('alarm-notice'),alarmMessage=document.getElementById('alarm-message'),alarmSettings=document.getElementById('alarm-settings');
+    let currentMedications=[];
     const today=new Date();today.setHours(0,0,0,0);const tomorrow=new Date(today);tomorrow.setDate(tomorrow.getDate()+1);
     document.getElementById('today').textContent=today.toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long'});
     function text(parent,tag,value,className){const el=document.createElement(tag);el.textContent=value;if(className)el.className=className;parent.appendChild(el);return el;}
     function localSchedule(time){const [hours,minutes]=time.split(':').map(Number);const at=new Date(today);at.setHours(hours,minutes,0,0);return at;}
-    async function load(){try{const [medResult,appointmentResult,profileResult,doseResult]=await Promise.all([window.Tecuido.request('/api/medications'),window.Tecuido.request('/api/appointments'),window.Tecuido.request('/api/profile/medical'),window.Tecuido.request('/api/medication-doses?from='+encodeURIComponent(today.toISOString())+'&to='+encodeURIComponent(tomorrow.toISOString()))]);const meds=(medResult.medications||[]).filter(m=>m.active);const appointments=(appointmentResult.appointments||[]).filter(a=>!a.completed&&new Date(a.starts_at)>=new Date()).slice(0,3);const doses=doseResult.doses||[];const profile=profileResult.medicalProfile||{};document.getElementById('greeting').textContent=profile.fullName?'Hola, '+profile.fullName.split(' ')[0]:'Mi día';profileSummary.textContent=profile.fullName?['Ficha médica guardada',profile.bloodType?'Grupo sanguíneo '+profile.bloodType:'',profile.emergencyContact?'Contacto de emergencia registrado':''].filter(Boolean).join(' · '):'Aún no has completado tu ficha médica.';renderDoses(meds,doses);renderAppointments(appointments);const pending=meds.reduce((count,med)=>count+(med.times||[]).filter(time=>!doses.some(d=>d.medication_id===med.id&&Math.abs(new Date(d.scheduled_for)-localSchedule(time))<120000)).length,0);notice.textContent=pending?('Tienes '+pending+' toma'+(pending===1?' pendiente':'s pendientes')+' programada'+(pending===1?'':'s')+' para hoy.'):meds.length?'No quedan tomas pendientes según los registros de hoy.':'Agrega tus remedios para organizar tus tomas.';}catch(error){notice.textContent=error.message;notice.classList.add('error');doseArea.replaceChildren();text(doseArea,'p','No pudimos cargar tu día.','empty');}}
+    async function syncAlarms(medications){currentMedications=medications;try{const result=await window.TecuidoAlarms.reprogramarTodo(medications);if(!result.available){alarmNotice.hidden=true;return;}if(!result.granted){alarmMessage.textContent=result.notifications!=='granted'?'Permite las notificaciones de TeCuido para recibir avisos aunque la aplicación esté cerrada.':'Permite las alarmas exactas para que los avisos suenen a la hora indicada.';alarmNotice.hidden=false;return;}alarmNotice.hidden=true;}catch(error){alarmMessage.textContent='No pudimos programar los recordatorios: '+error.message;alarmNotice.hidden=false;}}
+    alarmSettings.addEventListener('click',async()=>{alarmSettings.disabled=true;try{await window.TecuidoAlarms.abrirAjustes();}catch(error){alarmMessage.textContent=error.message;}finally{alarmSettings.disabled=false;}});
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncAlarms(currentMedications);});
+    async function load(){
+      try{
+        const medResult=await window.Tecuido.request('/api/medications');
+        const allMedications=medResult.medications||[];
+        await syncAlarms(allMedications);
+        const [appointmentResult,profileResult,doseResult]=await Promise.all([
+          window.Tecuido.request('/api/appointments'),
+          window.Tecuido.request('/api/profile/medical'),
+          window.Tecuido.request('/api/medication-doses?from='+encodeURIComponent(today.toISOString())+'&to='+encodeURIComponent(tomorrow.toISOString()))
+        ]);
+        const meds=allMedications.filter(m=>m.active);
+        const appointments=(appointmentResult.appointments||[]).filter(a=>!a.completed&&new Date(a.starts_at)>=new Date()).slice(0,3);
+        const doses=doseResult.doses||[];
+        const profile=profileResult.medicalProfile||{};
+        document.getElementById('greeting').textContent=profile.fullName?'Hola, '+profile.fullName.split(' ')[0]:'Mi día';
+        profileSummary.textContent=profile.fullName?['Ficha médica guardada',profile.bloodType?'Grupo sanguíneo '+profile.bloodType:'',profile.emergencyContact?'Contacto de emergencia registrado':''].filter(Boolean).join(' · '):'Aún no has completado tu ficha médica.';
+        renderDoses(meds,doses);
+        renderAppointments(appointments);
+        const pending=meds.reduce((count,med)=>count+(med.times||[]).filter(time=>!doses.some(d=>d.medication_id===med.id&&Math.abs(new Date(d.scheduled_for)-localSchedule(time))<120000)).length,0);
+        notice.textContent=pending?('Tienes '+pending+' toma'+(pending===1?' pendiente':'s pendientes')+' programada'+(pending===1?'':'s')+' para hoy.'):meds.length?'No quedan tomas pendientes según los registros de hoy.':'Agrega tus remedios para organizar tus tomas.';
+      }catch(error){
+        notice.textContent=error.message;
+        notice.classList.add('error');
+        doseArea.replaceChildren();
+        text(doseArea,'p','No pudimos cargar tu día.','empty');
+      }
+    }
     function renderDoses(meds,doses){doseArea.replaceChildren();if(!meds.length){text(doseArea,'p','No has agregado remedios activos.','empty');return;}let count=0;meds.forEach(med=>{(med.times||[]).forEach(time=>{count++;const scheduled=localSchedule(time);const record=doses.find(d=>d.medication_id===med.id&&Math.abs(new Date(d.scheduled_for)-scheduled)<120000);const row=document.createElement('div');row.className='dose';const info=document.createElement('div');text(info,'strong',med.name);text(info,'div',time+' · '+(med.dosage||med.strength||'Horario programado'),'muted');row.appendChild(info);if(record){text(row,'span',record.status==='taken'?'Registrado como tomado':'Omitido','chip');}else{const button=document.createElement('button');button.textContent='Registrar toma';button.addEventListener('click',async()=>{button.disabled=true;try{await window.Tecuido.request('/api/medications/'+encodeURIComponent(med.id)+'/doses',{method:'POST',body:{status:'taken',scheduledFor:scheduled.toISOString()}});await load();}catch(error){notice.textContent=error.message;notice.classList.add('error');button.disabled=false;}});row.appendChild(button);}doseArea.appendChild(row);});});if(!count)text(doseArea,'p','No definiste horarios para tus remedios. Puedes agregarlos desde Remedios.','empty');}
     function renderAppointments(items){appointmentArea.replaceChildren();if(!items.length){text(appointmentArea,'p','No tienes citas próximas registradas.','empty');return;}items.forEach(item=>{const row=document.createElement('div');row.className='dose';const info=document.createElement('div');text(info,'strong',item.title);text(info,'div',new Date(item.starts_at).toLocaleString('es-CL',{dateStyle:'medium',timeStyle:'short'}),'muted');row.appendChild(info);appointmentArea.appendChild(row);});}
     document.getElementById('logout').addEventListener('click',async()=>{await window.Tecuido.logout();location.replace('../login/code.html');});

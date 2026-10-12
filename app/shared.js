@@ -150,6 +150,198 @@
     }
   }
 
+  const alarmChannelId = 'tecuido-medication-reminders';
+  const alarmDataType = 'tecuido-medication-reminder';
+
+  function isNativePlatform() {
+    return Boolean(
+      window.Capacitor &&
+      typeof window.Capacitor.isNativePlatform === 'function' &&
+      window.Capacitor.isNativePlatform()
+    );
+  }
+
+  function getLocalNotifications() {
+    const plugins = window.Capacitor && window.Capacitor.Plugins;
+    const localNotifications = plugins && plugins.LocalNotifications;
+    if (!localNotifications) {
+      throw new Error('No se pudo iniciar el servicio de recordatorios del teléfono.');
+    }
+    return localNotifications;
+  }
+
+  function alarmStatus(notificationPermission, exactAlarmPermission) {
+    return {
+      available: true,
+      notifications: notificationPermission,
+      exactAlarm: exactAlarmPermission,
+      granted: notificationPermission === 'granted' && exactAlarmPermission === 'granted'
+    };
+  }
+
+  async function pedirPermisos() {
+    if (!isNativePlatform()) {
+      return { available: false, notifications: 'unavailable', exactAlarm: 'unavailable', granted: false };
+    }
+    const localNotifications = getLocalNotifications();
+    let notificationPermission = await localNotifications.checkPermissions();
+    if (notificationPermission.display === 'prompt' || notificationPermission.display === 'prompt-with-rationale') {
+      notificationPermission = await localNotifications.requestPermissions();
+    }
+    const exactAlarmPermission = await localNotifications.checkExactNotificationSetting();
+    return alarmStatus(notificationPermission.display, exactAlarmPermission.exact_alarm);
+  }
+
+  function notificationId(medicationId, time) {
+    const value = 'tecuido:' + medicationId + ':' + time;
+    let hash = 2166136261;
+    for (let index = 0; index < value.length; index += 1) {
+      hash = Math.imul(hash ^ value.charCodeAt(index), 16777619);
+    }
+    return (hash >>> 0) % 2147483647 + 1;
+  }
+
+  function reminderData(notification) {
+    return notification && (notification.extra || notification.data);
+  }
+
+  function isMedicationReminder(notification) {
+    const data = reminderData(notification);
+    return data && data.type === alarmDataType;
+  }
+
+  async function cancelOwnedNotifications(localNotifications, matches) {
+    const pending = await localNotifications.getPending();
+    const notifications = (pending.notifications || [])
+      .filter(notification => isMedicationReminder(notification) && matches(notification))
+      .map(notification => ({ id: notification.id }));
+    if (notifications.length) await localNotifications.cancel({ notifications });
+    const delivered = await localNotifications.getDeliveredNotifications();
+    const deliveredNotifications = (delivered.notifications || [])
+      .filter(notification => isMedicationReminder(notification) && matches(notification));
+    if (deliveredNotifications.length) {
+      await localNotifications.removeDeliveredNotifications({ notifications: deliveredNotifications });
+    }
+    return notifications.length + deliveredNotifications.length;
+  }
+
+  async function reprogramarTodo(medicamentos) {
+    if (!isNativePlatform()) {
+      return { available: false, notifications: 'unavailable', exactAlarm: 'unavailable', granted: false };
+    }
+    if (!Array.isArray(medicamentos)) {
+      throw new Error('No se pudo leer la lista de medicamentos para programar recordatorios.');
+    }
+
+    const localNotifications = getLocalNotifications();
+    const notifications = [];
+    const usedIds = new Set();
+    medicamentos.filter(medication => medication && medication.active === true).forEach(medication => {
+      if (medication.id === undefined || medication.id === null || !Array.isArray(medication.times)) {
+        throw new Error('Hay un medicamento activo con datos incompletos; revisa su ficha antes de programar alarmas.');
+      }
+      medication.times.forEach(time => {
+        if (typeof time !== 'string' || !/^([01]\d|2[0-3]):[0-5]\d$/.test(time)) {
+          throw new Error('Hay un horario de medicamento no válido; corrígelo antes de programar alarmas.');
+        }
+        const id = notificationId(String(medication.id), time);
+        if (usedIds.has(id)) {
+          throw new Error('No se pudieron identificar de forma única dos recordatorios de medicamentos.');
+        }
+        usedIds.add(id);
+        const [hour, minute] = time.split(':').map(Number);
+        const dosage = medication.dosage || medication.strength;
+        notifications.push({
+          id,
+          title: 'Hora de tu medicamento',
+          body: dosage ? medication.name + ' · ' + dosage : medication.name,
+          schedule: { on: { hour, minute }, repeats: true, allowWhileIdle: true },
+          channelId: alarmChannelId,
+          extra: {
+            type: alarmDataType,
+            medicationId: String(medication.id),
+            time
+          }
+        });
+      });
+    });
+
+    if (!notifications.length) {
+      await cancelOwnedNotifications(localNotifications, () => true);
+      return { available: true, notifications: 'granted', exactAlarm: 'granted', granted: true, scheduled: 0 };
+    }
+
+    const permission = await pedirPermisos();
+    if (!permission.granted) {
+      await cancelOwnedNotifications(localNotifications, () => true);
+      return permission;
+    }
+
+    await localNotifications.createChannel({
+      id: alarmChannelId,
+      name: 'Recordatorios de medicamentos',
+      description: 'Avisos diarios para tomar tus medicamentos',
+      importance: 4,
+      vibration: true
+    });
+    await cancelOwnedNotifications(localNotifications, () => true);
+    if (notifications.length) await localNotifications.schedule({ notifications });
+    return Object.assign({}, permission, { scheduled: notifications.length });
+  }
+
+  async function cancelarMedicamento(id) {
+    if (!isNativePlatform()) return { available: false, canceled: 0 };
+    if (id === undefined || id === null || String(id) === '') {
+      throw new Error('No se pudo identificar el medicamento que quieres cancelar.');
+    }
+    const localNotifications = getLocalNotifications();
+    const canceled = await cancelOwnedNotifications(
+      localNotifications,
+      notification => reminderData(notification).medicationId === String(id)
+    );
+    return { available: true, canceled };
+  }
+
+  async function abrirAjustes() {
+    if (!isNativePlatform()) return { available: false };
+    const localNotifications = getLocalNotifications();
+    const permission = await pedirPermisos();
+    if (permission.notifications !== 'granted') {
+      const plugins = window.Capacitor && window.Capacitor.Plugins;
+      const settings = plugins && plugins.TecuidoSettings;
+      if (!settings || typeof settings.openNotificationSettings !== 'function') {
+        throw new Error('No se pudieron abrir los ajustes de notificaciones de TeCuido.');
+      }
+      await settings.openNotificationSettings();
+      return { available: true, opened: 'notifications' };
+    }
+    const exactPermission = await localNotifications.checkExactNotificationSetting();
+    if (exactPermission.exact_alarm !== 'granted') {
+      await localNotifications.changeExactNotificationSetting();
+      return { available: true, opened: 'exactAlarm' };
+    }
+    return { available: true, opened: 'notifications' };
+  }
+
+  function listenForAlarmTaps() {
+    if (!isNativePlatform()) return;
+    const localNotifications = getLocalNotifications();
+    localNotifications.addListener('localNotificationActionPerformed', action => {
+      const notification = action && action.notification;
+      const extra = notification && notification.extra;
+      if (!extra || extra.type !== alarmDataType || !extra.medicationId) return;
+      const scriptUrl = document.currentScript && document.currentScript.src;
+      const sharedScript = scriptUrl || new URL('../shared.js', location.href).href;
+      const alarmUrl = new URL(
+        './alarma_activa_medicamento_pendiente/code.html?medicationId=' +
+          encodeURIComponent(extra.medicationId) +
+          '&time=' + encodeURIComponent(extra.time || ''),
+        sharedScript
+      );
+      location.replace(alarmUrl.href);
+    });
+  }
+
   window.Tecuido = {
     request,
     login,
@@ -164,4 +356,6 @@
       return session && session.user ? session.user : null;
     }
   };
+  window.TecuidoAlarms = { pedirPermisos, reprogramarTodo, cancelarMedicamento, abrirAjustes };
+  listenForAlarmTaps();
 })();

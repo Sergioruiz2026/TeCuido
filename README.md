@@ -1,3 +1,5 @@
+co
+
 # TeCuido
 
 Aplicación móvil Android basada en las pantallas HTML de TeCuido y el backend Node.js de `server/`.
@@ -82,7 +84,7 @@ La sesión se conserva entre reinicios de la app y vuelve a “Mi Día” al ini
 
 El plan gratuito puede suspender el servicio por inactividad. Los registros de usuarios y sus datos persisten en Supabase, pero la disponibilidad del API gratuito puede demorarse tras periodos de inactividad. La ruta pública `/api/medical/access` permanece deshabilitada (HTTP 503) hasta implementar autorización segura.
 
-La lista de remedios, tomas y citas es funcional y persistente. Las notificaciones nativas cuando la aplicación está cerrada, el escaneo OCR de recetas, los avisos a cuidadores y la autorización de viajes Uber requieren integraciones y permisos aún no configurados; la app no debe mostrar esos resultados como si ya se hubieran realizado. Revisa las obligaciones de privacidad y el nivel de protección del proveedor antes de introducir datos médicos reales.
+La lista de remedios, tomas y citas es funcional y persistente. Los recordatorios diarios de medicamentos activos se programan en el teléfono para cada horario y se restauran al reiniciar; requieren permisos de notificaciones y alarmas exactas. El escaneo OCR de recetas, los avisos a cuidadores y la autorización de viajes Uber requieren integraciones aún no configuradas; la app no debe mostrar esos resultados como si ya se hubieran realizado. Revisa las obligaciones de privacidad y el nivel de protección del proveedor antes de introducir datos médicos reales.
 
 ### Compilar release con API HTTPS
 

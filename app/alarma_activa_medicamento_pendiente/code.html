@@ -1,5 +1,67 @@
 <!doctype html>
 <html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Recordatorios - TeCuido</title><script src="../config.js"></script><script src="../shared.js"></script><style>:root{font:17px system-ui,sans-serif;color:#17233b;background:#f5f7fc}main{max-width:600px;margin:40px auto;padding:20px}.panel{background:white;border-radius:18px;padding:24px;box-shadow:0 4px 16px #17233b0a}h1{color:#003178}p{line-height:1.5}.notice{background:#fff4d2;padding:14px;border-radius:12px}.button{display:block;margin:12px 0;padding:14px;border-radius:12px;background:#003178;color:white;text-align:center;text-decoration:none;font-weight:700}.secondary{background:#e5ebf7;color:#17356a}</style></head>
-<body><main><section class="panel"><h1>Recordatorios de medicamentos</h1><p class="notice">Esta pantalla ya no muestra una alarma de ejemplo. La aplicación todavía no programa notificaciones que suenen con el teléfono cerrado.</p><p>Los horarios guardados se pueden consultar en Mi Día y puedes registrar una toma desde ahí.</p><a class="button" href="../mi_d_a_resumen_diario_y_alarmas/code.html">Ir a Mi Día</a><a class="button secondary" href="../mis_remedios_y_alarmas/code.html">Administrar remedios</a></section></main><script>if(!window.Tecuido.hasSession())location.replace('../login/code.html');</script></body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Recordatorio de medicamento - TeCuido</title>
+  <script src="../config.js"></script>
+  <script src="../shared.js"></script>
+  <style>
+    :root{font:17px system-ui,sans-serif;color:#17233b;background:#f5f7fc}
+    main{max-width:600px;margin:40px auto;padding:20px}
+    .panel{background:#fff;border-radius:18px;padding:24px;box-shadow:0 4px 16px #17233b0a}
+    h1{color:#003178;font-size:28px}
+    h2{font-size:24px}
+    p{line-height:1.5}
+    .notice{background:#fff4d2;padding:14px;border-radius:12px}
+    .button{display:block;margin:12px 0;padding:14px;border-radius:12px;background:#003178;color:#fff;text-align:center;text-decoration:none;font-weight:700}
+    .secondary{background:#e5ebf7;color:#17356a}
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body>
+  <main>
+    <section class="panel">
+      <h1>Recordatorio de medicamento</h1>
+      <p id="alarm-status" class="notice" role="status" aria-live="polite">Cargando los datos del recordatorio…</p>
+      <section id="medication-details" hidden>
+        <h2 id="medication-name"></h2>
+        <p id="medication-dose"></p>
+        <p id="medication-time"></p>
+        <p id="medication-instructions"></p>
+      </section>
+      <a class="button" href="../mi_d_a_resumen_diario_y_alarmas/code.html">Ir a Mi Día</a>
+      <a class="button secondary" href="../mis_remedios_y_alarmas/code.html">Administrar remedios</a>
+    </section>
+  </main>
+  <script>
+    if (!window.Tecuido.hasSession()) {
+      location.replace('../login/code.html');
+    } else {
+      const status = document.getElementById('alarm-status');
+      const details = document.getElementById('medication-details');
+      const medicationId = new URLSearchParams(location.search).get('medicationId');
+      const time = new URLSearchParams(location.search).get('time');
+      if (!medicationId) {
+        status.textContent = 'Abre un recordatorio de medicamento para ver sus detalles.';
+      } else {
+        window.Tecuido.request('/api/medications').then(result => {
+          const medication = (result.medications || []).find(item => String(item.id) === medicationId);
+          if (!medication) {
+            status.textContent = 'No encontramos este medicamento en tu lista. Revisa tus remedios guardados.';
+            return;
+          }
+          document.getElementById('medication-name').textContent = medication.name;
+          document.getElementById('medication-dose').textContent = medication.dosage || medication.strength || 'Revisa la dosis indicada en tu ficha.';
+          document.getElementById('medication-time').textContent = time ? 'Horario del recordatorio: ' + time : '';
+          document.getElementById('medication-instructions').textContent = medication.instructions || '';
+          status.textContent = 'Es la hora de revisar tu medicamento. Sigue las indicaciones de tu profesional de salud.';
+          details.hidden = false;
+        }).catch(error => {
+          status.textContent = error.message;
+        });
+      }
+    }
+  </script>
+</body>
 </html>

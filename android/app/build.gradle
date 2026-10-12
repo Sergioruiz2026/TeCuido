@@ -1,29 +1,42 @@
 apply plugin: 'com.android.application'
 
+// Firma release: lee android/keystore.properties (local) o variables de entorno (CI).
+def keystoreProps = new Properties()
+def keystoreFile = rootProject.file("keystore.properties")
+if (keystoreFile.exists()) {
+    keystoreFile.withInputStream { keystoreProps.load(it) }
+}
+def signValue = { String key, String env -> keystoreProps.getProperty(key) ?: System.getenv(env) }
+
 android {
     namespace "cl.tecuido.app"
     compileSdk rootProject.ext.compileSdkVersion
 
-    // Configuración de firma para Release
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
     signingConfigs {
         release {
-            storeFile file("C:/Users/matia/tecuido-release.jks") // O la extensión correcta
-            storePassword "TU_CONTRASEÑA"
-            keyAlias "tecuido"
-            keyPassword "TU_CONTRASEÑA"
+            def storePath = signValue("storeFile", "TECUIDO_KEYSTORE_FILE")
+            if (storePath) {
+                storeFile file(storePath)
+                storePassword signValue("storePassword", "TECUIDO_KEYSTORE_PASSWORD")
+                keyAlias signValue("keyAlias", "TECUIDO_KEY_ALIAS")
+                keyPassword signValue("keyPassword", "TECUIDO_KEY_PASSWORD")
+            }
         }
     }
 
     defaultConfig {
         applicationId "cl.tecuido.app"
-        minSdkVersion 24 // Fijado en Android 5.1+ para máxima compatibilidad
+        minSdkVersion 24
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
-            // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
-            // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
@@ -32,13 +45,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release // Aplica la firma al APK
+            if (signingConfigs.release.storeFile != null) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 }
 
 repositories {
-    flatDir{
+    flatDir {
         dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
     }
 }
